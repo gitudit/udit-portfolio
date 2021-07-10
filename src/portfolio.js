@@ -42,6 +42,9 @@ const skillsSection = {
   subTitle: "SOFTWARE DEVELOPER WHO NEVER SETTLES FOR ONE STACK",
   skills: [
     emoji(
+      "⚡Likes to think along the lines of clean, robust and object-oriented code, be it a project or solving a real-time problem in a coding contest."
+    ),
+    emoji(
       "⚡Develops highly scalable web-services and robust feature endpoints using Node.js. Make engaging user interfaces using Reactjs framework"
     ),
     emoji("⚡Integrating my application softwares with machine learning problem-solving and creating respective pipelines."),
