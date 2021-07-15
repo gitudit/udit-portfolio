@@ -113,7 +113,7 @@ const educationInfo = {
       logo: require("./assets/images/ABVIIITM_logo.jpg"),
       subHeader: "Integrated Bachelors and Masters in Information Technology",
       duration: "July 2018 - Expected May 2023",
-      desc: "Prefinal Year Student- CGPA: 8.14",
+      desc: "CGPA: 8.2/10.0",
       descBullets: [
         ""
       ]
