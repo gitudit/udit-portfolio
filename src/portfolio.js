@@ -188,34 +188,34 @@ const openSource = {
 // Some big projects you have worked on
 
 const bigProjects = {
-  title: "Big Projects",
-  subtitle: "SOME STARTUPS AND COMPANIES THAT I HELPED TO CREATE THEIR TECH",
+  title: "Projects",
+  subtitle: "",
   projects: [
     {
-      image: require("./assets/images/saayaHealthLogo.webp"),
-      projectName: "Saayahealth",
-      projectDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      image: require("./assets/images/kassandralogo.png"),
+      projectName: "Kassandra",
+      projectDesc: "Smart Retail Analytics and Employee Empowerment Solution powered by Azure Cloud Services.",
       footerLink: [
         {
-          name: "Visit Website",
-          url: "fa"
+          name: "Bitbucket Source",
+          url: "https://bitbucket.org/udit1907/welcometokassandra/src/main/"
         }
         //  you can add extra buttons here.
       ]
     },
     {
-      image: require("./assets/images/nextuLogo.webp"),
-      projectName: "Nextu",
-      projectDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      image: require("./assets/images/logo512.png"),
+      projectName: "Bourbaki",
+      projectDesc: "An android application that can automatically solve mathematical problems from both handwritten text images and computer font text.",
       footerLink: [
         {
-          name: "Visit Website",
-          url: ""
+          name: "Github Soruce",
+          url: "https://github.com/udit1707/BourBaki"
         }
       ]
     }
   ],
-  display: false // Set false to hide this section, defaults to true
+  display: true // Set false to hide this section, defaults to true
 };
 
 // Achievement Section
