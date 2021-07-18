@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "df6905721d89de10488913f0b376d86d",
+    "revision": "80eee30807729fde666c6ff7d079d83f",
     "url": "/udit-portfolio/index.html"
   },
   {
-    "revision": "fd8833519b30b1868542",
+    "revision": "9f7e97fa7bbcb4efefd5",
     "url": "/udit-portfolio/static/css/3.00373544.chunk.css"
   },
   {
@@ -12,32 +12,32 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/udit-portfolio/static/css/4.3e7d09e6.chunk.css"
   },
   {
-    "revision": "3173181fb74180fe22d8",
+    "revision": "218742cbfb7b27b4287b",
     "url": "/udit-portfolio/static/css/main.65554146.chunk.css"
   },
   {
-    "revision": "1af5b293325efc7488a4",
-    "url": "/udit-portfolio/static/js/2.ab4777c0.chunk.js"
+    "revision": "eeb4d3034d74d11fd0fe",
+    "url": "/udit-portfolio/static/js/2.b2d0659c.chunk.js"
   },
   {
     "revision": "0a6d64cd3b49be6a14afdf21fa7c6d43",
-    "url": "/udit-portfolio/static/js/2.ab4777c0.chunk.js.LICENSE.txt"
+    "url": "/udit-portfolio/static/js/2.b2d0659c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fd8833519b30b1868542",
-    "url": "/udit-portfolio/static/js/3.f93dbc3a.chunk.js"
+    "revision": "9f7e97fa7bbcb4efefd5",
+    "url": "/udit-portfolio/static/js/3.40c58f35.chunk.js"
   },
   {
     "revision": "6280ac6a11458ee42b03",
     "url": "/udit-portfolio/static/js/4.b8e04de1.chunk.js"
   },
   {
-    "revision": "3173181fb74180fe22d8",
-    "url": "/udit-portfolio/static/js/main.c0fdd2e6.chunk.js"
+    "revision": "218742cbfb7b27b4287b",
+    "url": "/udit-portfolio/static/js/main.0ff7198c.chunk.js"
   },
   {
-    "revision": "88fce8adb8b951cd2794",
-    "url": "/udit-portfolio/static/js/runtime-main.e7d840cb.js"
+    "revision": "dd9e48dcc94e5d548421",
+    "url": "/udit-portfolio/static/js/runtime-main.93cc3918.js"
   },
   {
     "revision": "21f233e19402cc4a66866a7f31191f0d",
@@ -68,20 +68,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/udit-portfolio/static/media/grroom_logo.84273e76.png"
   },
   {
+    "revision": "db795fce3d4c109b5d60b5c88901ac1a",
+    "url": "/udit-portfolio/static/media/kassandralogo.db795fce.png"
+  },
+  {
+    "revision": "7566206a69123f655f0eefc0fa282bca",
+    "url": "/udit-portfolio/static/media/logo512.7566206a.png"
+  },
+  {
     "revision": "52be31441c8cf8a8a16bd7a228d428bf",
     "url": "/udit-portfolio/static/media/manOnTable.52be3144.svg"
   },
   {
-    "revision": "829ad0a1deef4d7295adfecdf12df2be",
-    "url": "/udit-portfolio/static/media/nextuLogo.829ad0a1.webp"
-  },
-  {
     "revision": "ee62cb58630f29a6e6201b49d4c03728",
     "url": "/udit-portfolio/static/media/pwaLogo.ee62cb58.webp"
-  },
-  {
-    "revision": "25018d29d5ab115bc51c3e9a2d92f90f",
-    "url": "/udit-portfolio/static/media/saayaHealthLogo.25018d29.webp"
   },
   {
     "revision": "3440939881da8339d1597e8d77cdf850",
