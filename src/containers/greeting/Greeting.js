@@ -36,7 +36,7 @@ export default function Greeting() {
               >
                 <i class="fa fa-quote-left" aria-hidden="true"></i>A prefinal year IT undergraduate from IIIT Gwalior, passionate about full-stack software engineering and data science.</p>
               <hr></hr>
-              <p className={"greeting-text-p subTitle"}>Software engineering motivates me to collaborate with developers on shaping most novel of those ideas ideas and making them products shippable.<br></br>My knack for writing robust and object-oriented code drives me to challenge and stretch my DSA skills to the maximum!</p>
+              <p className={"greeting-text-p subTitle"}>Software development motivates me to collaborate with developers on shaping most novel of those ideas and making them products shippable.<br></br>My knack for writing robust and object-oriented code drives me to challenge and stretch my DSA skills to the maximum!</p>
               <p>Oh, did I tell?<br></br> I am forever addicted to Hackathons too!</p>
               <hr></hr>
               <p className={"greeting-text-p subTitle"}>FOLLOW ME AROUND THE WEB:</p>
