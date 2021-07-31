@@ -53,7 +53,7 @@ function Header() {
           )}
           {viewProjects && (
             <li>
-              <a href="#projects">Projects</a>
+              <a href="#projects">Big Projects</a>
             </li>
           )}
           {viewOpenSource && (
@@ -76,9 +76,12 @@ function Header() {
               <a href="#talks">Talks</a>
             </li>
           )}
-          {/* <li>
+          <li>
+            <a href="https://drive.google.com/file/d/1uJBfw32xYQUMdVtZAFP1sJRz4ieNYVM2/view?usp=sharing" target="_blank" rel="noreferrer noopener">Resume</a>
+          </li>
+          <li>
             <a href="#contact">Contact Me</a>
-          </li> */}
+          </li>
           {/* <li>
             <a href="#">
               <ToggleSwitch />

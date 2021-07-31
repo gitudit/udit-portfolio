@@ -58,6 +58,18 @@ export default function socialMedia() {
           <span></span>
         </a></Tooltip>
       ) : null}
+      {socialMediaLinks.hackerrank ? (
+        <Tooltip content="hackerrank | udit-singh"><a
+          href={socialMediaLinks.hackerrank}
+          className="icon-button hackerrank"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fab fa-hackerrank"></i>
+          <span></span>
+        </a></Tooltip>
+      ) : null}
+
 
       
 

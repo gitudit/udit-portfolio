@@ -34,22 +34,20 @@ export default function Greeting() {
                     : "greeting-text-p subTitle"
                 }
               >
-                <i class="fa fa-quote-left" aria-hidden="true"></i>A prefinal year IT undergraduate, from IIIT Gwalior.</p>
-              <p className={"greeting-text-p subTitle"}>
-              Over the course of time, I developed a keen enthusiasm for scraping and exploring data that mirrored real-world scenarios which pulled me into Data Science!
-              </p>
+                <i class="fa fa-quote-left" aria-hidden="true"></i>A prefinal year IT undergrad from IIIT Gwalior who is passionate about Full-Stack software development and Data science.</p>
               <hr></hr>
-              <p>Oh! did I not tell, I am ever motivated to collaborate with teammates and developers to shape most novel of the ideas and make them products consumable.</p>
+              <p className={"greeting-text-p subTitle"}>My knack for writing robust and object-oriented code helps me to challenge and stretch my DSA skills to the maximum!<br></br>I am ever motivated to collaborate with teammates and developers to shape most novel of the ideas and make them products shippable.</p>
+              <p>Oh, did I tell?<br></br> I am forever addicted to Hackathons too!</p>
               <hr></hr>
-              <p className={"greeting-text-p subTitle"}>I am forever addicted to Hackathons too!</p>
+              <p className={"greeting-text-p subTitle"}>FOLLOW ME AROUND THE WEB--</p>
               <SocialMedia />
               <div className="button-greeting-div">
-                <Button text="Contact me" href="#contact" />
-                <Button
-                  text="See my resume"
+                {/* <Button text="Contact me" href="#contact" /> */}
+                {/* <Button
+                  text="Resume"
                   newTab={true}
                   href={greeting.resumeLink}
-                />
+                /> */}
               </div>
             </div>
           </div>

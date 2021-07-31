@@ -42,6 +42,10 @@
   background-color: #ea4335;
 }
 
+.hackerrank i {
+  background-color: #0e9931;
+}
+
 
 /* Hover Transition */
 .google i:hover,

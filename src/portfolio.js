@@ -15,7 +15,7 @@ const greeting = {
     "A passionate Full Stack Software Developer 🚀 having an experience of designing and building Web and Mobile applications with JavaScript / Reactjs / Nodejs besides extending the application functionalities to a suite of stacks and frameworks."
   ),
   resumeLink:
-    "https://drive.google.com/file/d/19Rw_V2_MzKuvMRB--YM8PIyqUiJoNlcb/view?usp=sharing",
+    "https://drive.google.com/file/d/1uJBfw32xYQUMdVtZAFP1sJRz4ieNYVM2/view?usp=sharing",
   displayGreeting: true // Set false to hide this section, defaults to true
 };
 
@@ -26,6 +26,7 @@ const socialMediaLinks = {
   linkedin: "https://www.linkedin.com/in/udit-singh/",
   kaggle:"https://www.kaggle.com/udit1907",
   gmail: "uditsingh294@gmail.com",
+  hackerrank:"https://www.hackerrank.com/pinkman1707",
   // gitlab: "https://gitlab.com/",
   // facebook: "https://www.facebook.com/",
   //medium: "https://medium.com/@davidrakosi",
@@ -180,7 +181,7 @@ To know how to get github key look at readme.md */
 
 const openSource = {
   githubConvertedToken: process.env.REACT_APP_GITHUB_TOKEN,
-  githubUserName: "drakosi99", // Change to your github username to view your profile in Contact Section.
+  githubUserName: "udit1707", // Change to your github username to view your profile in Contact Section.
   showGithubProfile: "true", // Set true or false to show Contact profile using Github, defaults to true
   display: false // Set false to hide this section, defaults to true
 };
@@ -188,9 +189,20 @@ const openSource = {
 // Some big projects you have worked on
 
 const bigProjects = {
-  title: "Projects",
+  title: "Big Projects",
   subtitle: "",
   projects: [
+    {
+      image: require("./assets/images/ambulance.png"),
+      projectName: "Wheels For Wellness(Patent Applied)",
+      projectDesc: "Emergency ambulance allocation and health-crisis management system.",
+      footerLink: [
+        {
+          name: "Github Source(Coming Soon)",
+          url: "#"
+        }
+      ]
+    },
     {
       image: require("./assets/images/kassandralogo.png"),
       projectName: "Kassandra",
@@ -209,7 +221,7 @@ const bigProjects = {
       projectDesc: "An android application that can automatically solve mathematical problems from both handwritten text images and computer font text.",
       footerLink: [
         {
-          name: "Github Soruce",
+          name: "Github Source",
           url: "https://github.com/udit1707/BourBaki"
         }
       ]
