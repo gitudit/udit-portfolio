@@ -1,43 +1,43 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "80eee30807729fde666c6ff7d079d83f",
+    "revision": "96faac74235bc7e87f917daae6dac44c",
     "url": "/udit-portfolio/index.html"
   },
   {
-    "revision": "9f7e97fa7bbcb4efefd5",
+    "revision": "740bdf8509a4cab67556",
     "url": "/udit-portfolio/static/css/3.00373544.chunk.css"
   },
   {
-    "revision": "6280ac6a11458ee42b03",
+    "revision": "6a50f29fbbaf29c9d3dc",
     "url": "/udit-portfolio/static/css/4.3e7d09e6.chunk.css"
   },
   {
-    "revision": "218742cbfb7b27b4287b",
-    "url": "/udit-portfolio/static/css/main.65554146.chunk.css"
+    "revision": "15de88c5c1a445320be7",
+    "url": "/udit-portfolio/static/css/main.72247e8b.chunk.css"
   },
   {
-    "revision": "eeb4d3034d74d11fd0fe",
-    "url": "/udit-portfolio/static/js/2.b2d0659c.chunk.js"
+    "revision": "9167b0b5ac6759b3f7c5",
+    "url": "/udit-portfolio/static/js/2.45538e60.chunk.js"
   },
   {
     "revision": "0a6d64cd3b49be6a14afdf21fa7c6d43",
-    "url": "/udit-portfolio/static/js/2.b2d0659c.chunk.js.LICENSE.txt"
+    "url": "/udit-portfolio/static/js/2.45538e60.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9f7e97fa7bbcb4efefd5",
-    "url": "/udit-portfolio/static/js/3.40c58f35.chunk.js"
+    "revision": "740bdf8509a4cab67556",
+    "url": "/udit-portfolio/static/js/3.ac43eb76.chunk.js"
   },
   {
-    "revision": "6280ac6a11458ee42b03",
-    "url": "/udit-portfolio/static/js/4.b8e04de1.chunk.js"
+    "revision": "6a50f29fbbaf29c9d3dc",
+    "url": "/udit-portfolio/static/js/4.d2b9ec0a.chunk.js"
   },
   {
-    "revision": "218742cbfb7b27b4287b",
-    "url": "/udit-portfolio/static/js/main.0ff7198c.chunk.js"
+    "revision": "15de88c5c1a445320be7",
+    "url": "/udit-portfolio/static/js/main.47677e23.chunk.js"
   },
   {
-    "revision": "dd9e48dcc94e5d548421",
-    "url": "/udit-portfolio/static/js/runtime-main.93cc3918.js"
+    "revision": "d459af0bb7590e4bdacf",
+    "url": "/udit-portfolio/static/js/runtime-main.6e4149d0.js"
   },
   {
     "revision": "21f233e19402cc4a66866a7f31191f0d",
@@ -46,6 +46,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "ee6539921d713482b8ccd4d0d23961bb",
     "url": "/udit-portfolio/static/media/Montserrat-Regular.ee653992.ttf"
+  },
+  {
+    "revision": "b17b961bc3c5dacfa2bff51481f8b002",
+    "url": "/udit-portfolio/static/media/ambulance.b17b961b.png"
   },
   {
     "revision": "47a7a717679b640ceb1b05d38c480a61",
