@@ -34,12 +34,12 @@ export default function Greeting() {
                     : "greeting-text-p subTitle"
                 }
               >
-                <i class="fa fa-quote-left" aria-hidden="true"></i>A prefinal year IT undergrad from IIIT Gwalior who is passionate about Full-Stack software development and Data science.</p>
+                <i class="fa fa-quote-left" aria-hidden="true"></i>A prefinal year IT undergraduate from IIIT Gwalior, passionate about full-stack software engineering and data science.</p>
               <hr></hr>
-              <p className={"greeting-text-p subTitle"}>My knack for writing robust and object-oriented code helps me to challenge and stretch my DSA skills to the maximum!<br></br>I am ever motivated to collaborate with teammates and developers to shape most novel of the ideas and make them products shippable.</p>
+              <p className={"greeting-text-p subTitle"}>Software engineering motivates me to collaborate with developers on shaping most novel of those ideas ideas and making them products shippable.<br></br>My knack for writing robust and object-oriented code drives me to challenge and stretch my DSA skills to the maximum!</p>
               <p>Oh, did I tell?<br></br> I am forever addicted to Hackathons too!</p>
               <hr></hr>
-              <p className={"greeting-text-p subTitle"}>FOLLOW ME AROUND THE WEB--</p>
+              <p className={"greeting-text-p subTitle"}>FOLLOW ME AROUND THE WEB:</p>
               <SocialMedia />
               <div className="button-greeting-div">
                 {/* <Button text="Contact me" href="#contact" /> */}
