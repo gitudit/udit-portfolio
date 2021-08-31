@@ -77,7 +77,7 @@ function Header() {
             </li>
           )}
           <li>
-            <a href="https://drive.google.com/file/d/1_3GkHMuQ-zDgqFZBVHYRzS1yMJ55wUp9/view?usp=sharing" target="_blank" rel="noreferrer noopener">Resume</a>
+            <a href="https://drive.google.com/file/d/1_L7WMow8cWNOJTc5PTrO9PL1XHwNeHv3/view?usp=sharing" target="_blank" rel="noreferrer noopener">Resume</a>
           </li>
           <li>
             <a href="#contact">Contact Me</a>
