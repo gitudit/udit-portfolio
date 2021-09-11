@@ -209,8 +209,8 @@ const bigProjects = {
       projectDesc: "Smart Retail Analytics and Employee Empowerment Solution powered by Azure Cloud Services.",
       footerLink: [
         {
-          name: "Bitbucket Source",
-          url: "https://bitbucket.org/udit1907/welcometokassandra/src/main/"
+          name: "Github Source",
+          url: "https://github.com/udit1707/welcomeToKassandra"
         }
         //  you can add extra buttons here.
       ]
