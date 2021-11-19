@@ -153,6 +153,19 @@ const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
     {
+      role: "Intern-BloomClass",
+      company: "BYJU'S",
+      companylogo: require("./assets/images/logo_by.jpeg"),
+      date: "November 2021 – Present",
+      desc:
+        "",
+      descBullets: [
+        "Team International Business",
+        "API Integration and testing",
+        "Exposing API and UI"
+      ]
+    },
+    {
       role: "Machine Learning Intern",
       company: "Grroom",
       companylogo: require("./assets/images/grroom_logo.png"),

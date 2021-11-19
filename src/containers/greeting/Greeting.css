@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Saira+Extra+Condensed:500');
+
 .main {
   width: 90%;
   padding: 20px 10px;
@@ -13,6 +15,43 @@
 
 .greeting-main {
   display: flex;
+}
+section {  
+  margin: 0;  
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  /* width: 50%; */
+ } 
+
+.containerP {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  height: 100vh;
+  justify-content: center;
+  line-height: 1.25;
+  overflow: hidden;
+  height: 100vh;
+  position: relative;
+  width: 100%;
+}
+
+.intro {
+  /* left: 50%; */
+  opacity: 0;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  /* top: 50%; */
+  z-index: 200;
+  /* width: 100%; */
+}
+
+
+.introP {
+  color: rgb(42, 42, 187);
+  font-size: 1.25rem;
 }
 
 .subTitle {
