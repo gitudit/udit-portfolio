@@ -160,8 +160,7 @@ const workExperiences = {
       desc:
         "",
       descBullets: [
-        "Team International Business",
-        "API Integration and testing",
+        "Working with the Frontend Engineering team.",
         "Exposing API and UI"
       ]
     },
@@ -179,12 +178,17 @@ const workExperiences = {
       ]
     },
     {
-      role: "Web Development Intern",
+      role: "Backend Development Intern",
       company: "Bashank Infotech Private Limited",
       companylogo: require("./assets/images/bashank_logo.png"),
       date: "May 2020 – July 2020",
       desc:
-        "I lead software developers building the UI design and integrating client side with the REST APIs for a school."
+        "",
+        descBullets: [
+          "Worked on an institute ERP system",
+          "Query optimization getting performance improvement of up to 80%",
+          "Built a dedicated access control support service to manage auth"
+        ]
     }
   ]
 };
