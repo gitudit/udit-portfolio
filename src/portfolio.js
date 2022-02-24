@@ -153,15 +153,16 @@ const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
     {
-      role: "Intern-BloomClass",
+      role: "Software Engineer Intern",
       company: "BYJU'S",
       companylogo: require("./assets/images/logo_by.jpeg"),
       date: "November 2021 – Present",
       desc:
         "",
       descBullets: [
-        "Working with the Frontend Engineering team.",
-        "Exposing API and UI"
+        "Working with the Animation an Arts tech team.",
+        "Translated design wire-frames into website elements.",
+        "Curated the business logic from scratch for slide navigation."
       ]
     },
     {
@@ -211,7 +212,7 @@ const bigProjects = {
   projects: [
     {
       image: require("./assets/images/ambulance.png"),
-      projectName: "Wheels For Wellness(Patent Applied)",
+      projectName: "Wheels For Wellness(Patent No: 202221006822)",
       projectDesc: "Emergency ambulance allocation and health-crisis management system.",
       footerLink: [
         {
