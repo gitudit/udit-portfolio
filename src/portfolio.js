@@ -114,7 +114,7 @@ const educationInfo = {
       logo: require("./assets/images/ABVIIITM_logo.jpg"),
       subHeader: "Integrated Bachelors and Masters in Information Technology",
       duration: "July 2018 - Expected May 2023",
-      desc: "CGPA: 8.2/10.0",
+      desc: "CGPA: 8.03/10.0",
       descBullets: [
         ""
       ]
@@ -156,11 +156,11 @@ const workExperiences = {
       role: "Software Engineer Intern",
       company: "BYJU'S",
       companylogo: require("./assets/images/logo_by.jpeg"),
-      date: "November 2021 – Present",
+      date: "November 2021 – March 2022",
       desc:
         "",
       descBullets: [
-        "Working with the Animation an Arts tech team.",
+        "Working with the Animation and Arts tech team.",
         "Translated design wire-frames into website elements.",
         "Curated the business logic from scratch for slide navigation."
       ]
