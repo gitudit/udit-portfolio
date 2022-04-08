@@ -216,8 +216,8 @@ const bigProjects = {
       projectDesc: "Emergency ambulance allocation and health-crisis management system.",
       footerLink: [
         {
-          name: "Github Source(Coming Soon)",
-          url: "#"
+          name: "Github Source",
+          url: "https://github.com/udit1707/wheels-for-wellnesss"
         }
       ]
     },
