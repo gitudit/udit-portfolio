@@ -153,6 +153,18 @@ const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
     {
+      role: "SDE Intern",
+      company: "Altair",
+      companylogo: require("./assets/images/altair_logo.jpg"),
+      date: "May 2022 – Present",
+      desc:
+        "",
+      descBullets: [
+        "Working with the Hypermesh Core Development Team",
+        "Translating UI using Python GUI wrapping MS Fluent UI."
+      ]
+    },
+    {
       role: "Software Engineer Intern",
       company: "BYJU'S",
       companylogo: require("./assets/images/logo_by.jpeg"),

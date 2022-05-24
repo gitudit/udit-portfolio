@@ -14,8 +14,10 @@
 }
 
 .contact-title {
+  color:  rgb(142, 117, 131);
   font-size: 65px;
   font-weight: 400;
+  text-align: center !important;
 }
 
 
@@ -65,7 +67,7 @@
   .button {
     display: block;
     width: 100%;
-    background-color: #55198b;
+    background-color: rgb(188, 180, 180);
     border: none;
     border-radius: 3px;
     padding: 1ch;
@@ -81,7 +83,7 @@
       border-radius: 3px;
       padding: 1ch;
       font-size: 2.5rem;
-      color: #55198b;
+      color: rgb(188, 180, 180);
       font-family: inherit; }
 
       .buttonf {
@@ -110,7 +112,7 @@
       position: absolute;
       top: 0;
       font-size: 0.9em;
-      color: #55198b;
+      color:rgb(188, 180, 180);
       font-weight: bold;
       transform: translateY(-50%);
       background-color: #fff;
@@ -126,7 +128,7 @@
       font-size: 1rem;
       font-family: inherit; }
     .text-input input.input-focus {
-      border-color: #55198b; }
+      border-color:rgb(188, 180, 180); }
   
   .text-area {
     position: relative;
@@ -143,7 +145,7 @@
       position: absolute;
       top: 0;
       font-size: 0.9em;
-      color: #55198b;
+      color:rgb(188, 180, 180);
       font-weight: bold;
       transform: translateY(-50%);
       background-color: #fff;
@@ -160,6 +162,6 @@
       font-family: inherit;
       height: 8em; }
     .text-area textarea.input-focus {
-      border-color: #55198b; }
+      border-color:rgb(188, 180, 180); }
   
 

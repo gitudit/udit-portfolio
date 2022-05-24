@@ -74,7 +74,7 @@ section {
 .greeting-text {
   font-size: 40px;
   line-height: 1.1;
-  color: black !important;
+  color: rgb(142, 117, 131) !important;
 }
 
 .greeting-text-p {

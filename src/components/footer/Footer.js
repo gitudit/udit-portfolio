@@ -13,7 +13,7 @@ export default function Footer() {
           {emoji("Udit Singh © 2021")}
         </p>
         <p className={isDark ? "dark-mode footer-text" : "footer-text"}>
-         <a href="#">
+         <a style={{color:"#847070"}} href="#">
           <i class="fa fa-map-marker" aria-hidden="true"></i> Kanpur City, India.
           </a>
         </p>

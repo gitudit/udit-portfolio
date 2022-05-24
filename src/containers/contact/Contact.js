@@ -3,6 +3,7 @@ import "./Contact.css";
 import { illustration, contactInfo } from "../../portfolio";
 import { Fade } from "react-reveal";
 import email_email from "../../assets/lottie/email";
+// import email from "../../assets/lottie/"
 import DisplayLottie from "../../components/displayLottie/DisplayLottie";
 import StyleContext from "../../contexts/StyleContext";
 import emailjs from 'emailjs-com';
