@@ -51,8 +51,9 @@
 .google i:hover,
 .github i:hover,
 .linkedin i:hover,
-.kaggle i:hover {
-  background-color: black;
+.kaggle i:hover,
+.hackerrank i:hover {
+  background-color: rgba(57, 56, 57, 0.473);
 }
 
 /* Media Query */

@@ -36,11 +36,13 @@ export default function Greeting() {
                     ? "dark-mode greeting-text-p"
                     : "greeting-text-p subTitle"
                 }
+                style={{fontWeight:"bold", fontSize:"20px"}}
               >
-                <i class="fa fa-quote-left" aria-hidden="true"></i>A prefinal year IT undergraduate from IIIT Gwalior, passionate about full-stack software engineering and data science.</p>
+                <i class="fa fa-quote-left" aria-hidden="true"></i> A senior year undergraduate from IIIT Gwalior, India with a major in IT.</p>
               <hr></hr>
-              <p className={"greeting-text-p subTitle"}>Software development motivates me to collaborate with developers on shaping most novel of those ideas and making them products shippable.<br></br>My knack for writing robust and object-oriented code drives me to challenge and stretch my DSA skills to the maximum!</p>
-              <p>Oh, did I tell?<br></br> I am forever addicted to Hackathons too!</p>
+              <p className={"greeting-text-p subTitle"} style={{fontSize:"15px"}}><i class="fa fa-quote-left" aria-hidden="true"></i> Software development motivates me to collaborate with developers on shaping most novel of those ideas and making them products shippable.</p>
+              <p className={"greeting-text-p subTitle"} style={{fontSize:"15px"}}><i class="fa fa-quote-left" aria-hidden="true"></i> My knack for writing robust and object-oriented code drives me to challenge and stretch my DSA skills to the maximum!</p>
+              <p className={"greeting-text-p subTitle"} style={{fontSize:"15px"}}><i class="fa fa-quote-left" aria-hidden="true"></i> Oh, did I tell? I am forever addicted to Hackathons too!</p>
               <hr></hr>
               <p className={"greeting-text-p subTitle"}>FOLLOW ME AROUND THE WEB:</p>
               <SocialMedia />

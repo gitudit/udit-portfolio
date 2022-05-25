@@ -1,7 +1,7 @@
 /* Custom properties */
 :root {
     --tooltip-text-color: white;
-    --tooltip-background-color: black;
+    --tooltip-background-color: rgba(57, 56, 57, 0.473);
     --tooltip-margin: 30px;
     --tooltip-arrow-size: 6px;
   }

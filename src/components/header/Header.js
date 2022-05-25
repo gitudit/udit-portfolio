@@ -80,6 +80,8 @@ function Header() {
           )}
           <li>
             <a href="https://drive.google.com/file/d/1HnggM6RReC9HcmJ6BubXz89VRjhErVix/view?usp=sharing" target="_blank" rel="noreferrer noopener">Resume</a>
+            {/* <a href="#" target="_blank" rel="noreferrer noopener">Resume</a> */}
+
           </li>
           <li>
             <a href="#contact">Contact Me</a>
