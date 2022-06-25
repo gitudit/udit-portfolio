@@ -161,7 +161,7 @@ const workExperiences = {
         "",
       descBullets: [
         "Migrating the entire Hypermesh local framework and enabling access on cloud",
-        "Translating UI using Python GUI wrapping MS Fluent UI."
+        "Translating UI using Python GUI wrapping MS Fluent UI"
       ]
     },
     {
