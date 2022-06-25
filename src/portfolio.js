@@ -160,7 +160,7 @@ const workExperiences = {
       desc:
         "",
       descBullets: [
-        "Working with the Hypermesh Core Development Team",
+        "Migrating the entire Hypermesh local framework and enabling access on cloud",
         "Translating UI using Python GUI wrapping MS Fluent UI."
       ]
     },
