@@ -114,7 +114,7 @@ const educationInfo = {
       logo: require("./assets/images/ABVIIITM_logo.jpg"),
       subHeader: "Integrated Bachelors and Masters in Information Technology",
       duration: "July 2018 - Expected May 2023",
-      desc: "CGPA: 8.03/10.0",
+      desc: "CGPA: 8.05/10.0",
       descBullets: [
         ""
       ]
@@ -154,9 +154,21 @@ const workExperiences = {
   experience: [
     {
       role: "SDE Intern",
+      company: "Scaler",
+      companylogo: require("./assets/images/scaler_logo.jpg"),
+      date: "Jan 2023 – Current",
+      desc:
+        "",
+      descBullets: [
+        "Enhancing mentee retention working on the mentorship pod",
+        "Optimizing scaler interview pod using modular CSS"
+      ]
+    },
+    {
+      role: "SDE Intern",
       company: "Altair",
       companylogo: require("./assets/images/altair_logo.jpg"),
-      date: "May 2022 – Present",
+      date: "May 2022 – Dec 200",
       desc:
         "",
       descBullets: [
@@ -176,32 +188,6 @@ const workExperiences = {
         "Translated design wire-frames into website elements.",
         "Curated the business logic from scratch for slide navigation."
       ]
-    },
-    {
-      role: "Machine Learning Intern",
-      company: "Grroom",
-      companylogo: require("./assets/images/grroom_logo.png"),
-      date: "November 2020 – Januray 2021",
-      desc:
-        "",
-      descBullets: [
-        "Designing Deep Learning Tests and Experiments",
-        "Building and training a deep learning model for AI based Fashion APP",
-        "Image scraping and annotating for models"
-      ]
-    },
-    {
-      role: "Backend Development Intern",
-      company: "Bashank Infotech Private Limited",
-      companylogo: require("./assets/images/bashank_logo.png"),
-      date: "May 2020 – July 2020",
-      desc:
-        "",
-        descBullets: [
-          "Worked on an institute ERP system",
-          "Query optimization getting performance improvement of up to 80%",
-          "Built a dedicated access control support service to manage auth"
-        ]
     }
   ]
 };
