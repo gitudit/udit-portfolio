@@ -1,43 +1,43 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c0473ecbfbcccf4e92120db4667188a4",
+    "revision": "54e0ccd445b51a6432223c4828f5673f",
     "url": "/udit-portfolio/index.html"
   },
   {
-    "revision": "badffeb8ab39fec8ce26",
+    "revision": "7da4e10f41daceef43f9",
     "url": "/udit-portfolio/static/css/3.3a26ebde.chunk.css"
   },
   {
-    "revision": "a3ee90c364b9d42e668b",
+    "revision": "a0527d78bd68bdd2cf66",
     "url": "/udit-portfolio/static/css/4.ea3dbbf2.chunk.css"
   },
   {
-    "revision": "6ec7316a410c2a24c1d8",
-    "url": "/udit-portfolio/static/css/main.1ec93cc4.chunk.css"
+    "revision": "8c7142855fc325b78a12",
+    "url": "/udit-portfolio/static/css/main.731d544e.chunk.css"
   },
   {
-    "revision": "b57fc2d46edcc37513a0",
-    "url": "/udit-portfolio/static/js/2.a19d499d.chunk.js"
+    "revision": "a91818838801e0f9849b",
+    "url": "/udit-portfolio/static/js/2.37e1c0fd.chunk.js"
   },
   {
     "revision": "0a6d64cd3b49be6a14afdf21fa7c6d43",
-    "url": "/udit-portfolio/static/js/2.a19d499d.chunk.js.LICENSE.txt"
+    "url": "/udit-portfolio/static/js/2.37e1c0fd.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "badffeb8ab39fec8ce26",
-    "url": "/udit-portfolio/static/js/3.bc6ca651.chunk.js"
+    "revision": "7da4e10f41daceef43f9",
+    "url": "/udit-portfolio/static/js/3.11f31bc7.chunk.js"
   },
   {
-    "revision": "a3ee90c364b9d42e668b",
-    "url": "/udit-portfolio/static/js/4.cb7f979c.chunk.js"
+    "revision": "a0527d78bd68bdd2cf66",
+    "url": "/udit-portfolio/static/js/4.4acbba30.chunk.js"
   },
   {
-    "revision": "6ec7316a410c2a24c1d8",
-    "url": "/udit-portfolio/static/js/main.1f2563e6.chunk.js"
+    "revision": "8c7142855fc325b78a12",
+    "url": "/udit-portfolio/static/js/main.7533fd5b.chunk.js"
   },
   {
-    "revision": "178af95a04735915845e",
-    "url": "/udit-portfolio/static/js/runtime-main.437becce.js"
+    "revision": "c15f884ad14f1a11a20c",
+    "url": "/udit-portfolio/static/js/runtime-main.3660a16f.js"
   },
   {
     "revision": "21f233e19402cc4a66866a7f31191f0d",
@@ -66,10 +66,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "e79c639294c805688be731921368c8f8",
     "url": "/udit-portfolio/static/media/googleAssistantLogo.e79c6392.webp"
-  },
-  {
-    "revision": "84273e76a5c9dfc61fd6e875c42ab0cd",
-    "url": "/udit-portfolio/static/media/grroom_logo.84273e76.png"
   },
   {
     "revision": "db795fce3d4c109b5d60b5c88901ac1a",
