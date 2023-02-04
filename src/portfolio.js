@@ -154,7 +154,7 @@ const workExperiences = {
   experience: [
     {
       role: "SDE Intern",
-      company: "Scaler",
+      company: "Scaler By InterviewBit",
       companylogo: require("./assets/images/scaler_logo.jpg"),
       date: "Jan 2023 – Current",
       desc:
@@ -168,7 +168,7 @@ const workExperiences = {
       role: "SDE Intern",
       company: "Altair",
       companylogo: require("./assets/images/altair_logo.jpg"),
-      date: "May 2022 – Dec 200",
+      date: "May 2022 – Dec 2022",
       desc:
         "",
       descBullets: [
