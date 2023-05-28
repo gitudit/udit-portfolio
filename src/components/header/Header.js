@@ -79,7 +79,7 @@ function Header() {
             </li>
           )}
           <li>
-            <a href="https://drive.google.com/file/d/16VcSf0ev1OpbEghORveaJdHHQfGi7wgq/view?usp=sharing" target="_blank" rel="noreferrer noopener">Resume</a>
+            <a href="https://drive.google.com/file/d/160otEn5nvr-EAv2-PBEQSVanJ9QVWVdR/view?usp=sharing" target="_blank" rel="noreferrer noopener">Resume</a>
             {/* <a href="#" target="_blank" rel="noreferrer noopener">Resume</a> */}
 
           </li>
