@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dd8efffa81b7964f77b903f147151284",
+    "revision": "39972248b02c4b954461a55b1156e6e0",
     "url": "/udit-portfolio/index.html"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/udit-portfolio/static/css/4.ea3dbbf2.chunk.css"
   },
   {
-    "revision": "4a3181c543e6195c2be7",
+    "revision": "cb427523b42518bcec70",
     "url": "/udit-portfolio/static/css/main.731d544e.chunk.css"
   },
   {
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/udit-portfolio/static/js/4.4acbba30.chunk.js"
   },
   {
-    "revision": "4a3181c543e6195c2be7",
-    "url": "/udit-portfolio/static/js/main.e2a69c28.chunk.js"
+    "revision": "cb427523b42518bcec70",
+    "url": "/udit-portfolio/static/js/main.cc99ccd3.chunk.js"
   },
   {
     "revision": "c15f884ad14f1a11a20c",
