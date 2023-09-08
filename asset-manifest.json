@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/udit-portfolio/static/css/main.731d544e.chunk.css",
-    "main.js": "/udit-portfolio/static/js/main.6e0abc13.chunk.js",
-    "main.js.map": "/udit-portfolio/static/js/main.6e0abc13.chunk.js.map",
+    "main.js": "/udit-portfolio/static/js/main.4915a5fa.chunk.js",
+    "main.js.map": "/udit-portfolio/static/js/main.4915a5fa.chunk.js.map",
     "runtime-main.js": "/udit-portfolio/static/js/runtime-main.3660a16f.js",
     "runtime-main.js.map": "/udit-portfolio/static/js/runtime-main.3660a16f.js.map",
     "static/js/2.37e1c0fd.chunk.js": "/udit-portfolio/static/js/2.37e1c0fd.chunk.js",
@@ -14,7 +14,7 @@
     "static/js/4.4acbba30.chunk.js": "/udit-portfolio/static/js/4.4acbba30.chunk.js",
     "static/js/4.4acbba30.chunk.js.map": "/udit-portfolio/static/js/4.4acbba30.chunk.js.map",
     "index.html": "/udit-portfolio/index.html",
-    "precache-manifest.da64477b05b99ca0edb15347ea010d98.js": "/udit-portfolio/precache-manifest.da64477b05b99ca0edb15347ea010d98.js",
+    "precache-manifest.591e72bf71a099ce2f152b269fbafe75.js": "/udit-portfolio/precache-manifest.591e72bf71a099ce2f152b269fbafe75.js",
     "service-worker.js": "/udit-portfolio/service-worker.js",
     "static/css/3.3a26ebde.chunk.css.map": "/udit-portfolio/static/css/3.3a26ebde.chunk.css.map",
     "static/css/4.ea3dbbf2.chunk.css.map": "/udit-portfolio/static/css/4.ea3dbbf2.chunk.css.map",
@@ -37,6 +37,6 @@
     "static/js/runtime-main.3660a16f.js",
     "static/js/2.37e1c0fd.chunk.js",
     "static/css/main.731d544e.chunk.css",
-    "static/js/main.6e0abc13.chunk.js"
+    "static/js/main.4915a5fa.chunk.js"
   ]
 }
