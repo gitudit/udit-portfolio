@@ -43,14 +43,14 @@ const skillsSection = {
   subTitle: "SOFTWARE DEVELOPER WHO NEVER SETTLES FOR ONE STACK",
   skills: [
     emoji(
-      "⚡Likes to think along the lines of clean, robust and object-oriented code, be it a project or solving a real-time problem in a coding contest."
+      " Likes to think along the lines of clean, robust and object-oriented code, be it a project or solving a real-time problem in a coding contest."
     ),
     emoji(
-      "⚡Develops highly scalable web-services and robust feature endpoints using Node.js. Make engaging user interfaces using Reactjs framework"
+      " Develops highly scalable web-services and robust feature endpoints using Node.js. Make engaging user interfaces using Reactjs framework"
     ),
-    emoji("⚡Integrating my application softwares with machine learning problem-solving and creating respective pipelines."),
+    emoji(" Integrating my application softwares with machine learning problem-solving and creating respective pipelines."),
     emoji(
-      "⚡Integration, testing and deployment on third party cloud based services such as AWS, Azure and firebase."
+      " Integration, testing and deployment on third party cloud based services such as AWS, Azure and firebase."
     )
   ],
 
@@ -113,8 +113,8 @@ const educationInfo = {
       schoolName: "Indian Institue of Information Technology, Gwalior",
       logo: require("./assets/images/ABVIIITM_logo.jpg"),
       subHeader: "Integrated Bachelors and Masters in Information Technology",
-      duration: "July 2018 - Expected May 2023",
-      desc: "CGPA: 8.05/10.0",
+      duration: "July 2018 - May 2023",
+      desc: "CGPA: 8.17/10.0",
       descBullets: [
         ""
       ]
@@ -128,12 +128,12 @@ const techStack = {
   viewSkillBars: true, //Set it to true to show Proficiency Section
   experience: [
     {
-      Stack: "Server Design and Architecture / Backend", //Insert stack or technology you have experience in
-      progressPercentage: "95%" //Insert relative proficiency in percentage
+      Stack: "Frontend",
+      progressPercentage: "96%"
     },
     {
-      Stack: "Frontend",
-      progressPercentage: "90%"
+      Stack: "Server Design and Architecture / Backend", //Insert stack or technology you have experience in
+      progressPercentage: "90%" //Insert relative proficiency in percentage
     },
     {
       Stack: "Data Structures and Algorithm",
@@ -153,10 +153,21 @@ const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
     {
+      role: "SDE, Frontend",
+      company: "Cerebry",
+      companylogo: require("./assets/images/cerebry_logo.jpg"),
+      date: "Sept 2023 – Current",
+      desc:
+        "",
+      descBullets: [
+        "Elevated system performance, fixed critical UI issues, and boosted user engagement by 15% through an accessibility feature,",
+      ]
+    },
+    {
       role: "SDE Intern",
       company: "Scaler By InterviewBit",
       companylogo: require("./assets/images/scaler_logo.jpg"),
-      date: "Jan 2023 – Current",
+      date: "Jan 2023 – July 2023",
       desc:
         "",
       descBullets: [

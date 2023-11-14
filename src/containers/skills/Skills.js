@@ -55,7 +55,7 @@ export default function Skills() {
                         : "subTitle skills-text"
                     }
                   >
-                    {skills}
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>{skills}
                   </p>
                 );
               })}

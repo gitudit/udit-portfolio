@@ -38,9 +38,9 @@ export default function Greeting() {
                 }
                 style={{fontWeight:"bold", fontSize:"20px"}}
               >
-                <i class="fa fa-quote-left" aria-hidden="true"></i> A senior year undergraduate from IIIT Gwalior, India with a major in IT.</p>
+                <i class="fa fa-quote-left" aria-hidden="true"></i> Full-time Software Engineer with a commitment to excellence</p>
               <hr></hr>
-              <p className={"greeting-text-p subTitle"} style={{fontSize:"15px"}}><i class="fa fa-quote-left" aria-hidden="true"></i> Software development motivates me to collaborate with developers on shaping most novel of those ideas and making them products shippable.</p>
+              <p className={"greeting-text-p subTitle"} style={{fontSize:"15px"}}><i class="fa fa-quote-left" aria-hidden="true"></i> Proven track record in solving real-time problems using dynamic frameworks.</p>
               <p className={"greeting-text-p subTitle"} style={{fontSize:"15px"}}><i class="fa fa-quote-left" aria-hidden="true"></i> My knack for writing robust and object-oriented code drives me to challenge and stretch my DSA skills to the maximum!</p>
               <p className={"greeting-text-p subTitle"} style={{fontSize:"15px"}}><i class="fa fa-quote-left" aria-hidden="true"></i> Oh, did I tell? I am forever addicted to Hackathons too!</p>
               <hr></hr>
