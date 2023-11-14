@@ -1,43 +1,43 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4044276e8d4f429493a12930edadf400",
+    "revision": "06c8a7924cd5bdc7c4208f3cbad619fe",
     "url": "/udit-portfolio/index.html"
   },
   {
-    "revision": "7da4e10f41daceef43f9",
+    "revision": "badffeb8ab39fec8ce26",
     "url": "/udit-portfolio/static/css/3.3a26ebde.chunk.css"
   },
   {
-    "revision": "a0527d78bd68bdd2cf66",
+    "revision": "a3ee90c364b9d42e668b",
     "url": "/udit-portfolio/static/css/4.ea3dbbf2.chunk.css"
   },
   {
-    "revision": "bfc337b000e2a5f3a5ea",
+    "revision": "a99dfec29d73c033bcfd",
     "url": "/udit-portfolio/static/css/main.731d544e.chunk.css"
   },
   {
-    "revision": "a91818838801e0f9849b",
-    "url": "/udit-portfolio/static/js/2.37e1c0fd.chunk.js"
+    "revision": "b57fc2d46edcc37513a0",
+    "url": "/udit-portfolio/static/js/2.a19d499d.chunk.js"
   },
   {
     "revision": "0a6d64cd3b49be6a14afdf21fa7c6d43",
-    "url": "/udit-portfolio/static/js/2.37e1c0fd.chunk.js.LICENSE.txt"
+    "url": "/udit-portfolio/static/js/2.a19d499d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7da4e10f41daceef43f9",
-    "url": "/udit-portfolio/static/js/3.11f31bc7.chunk.js"
+    "revision": "badffeb8ab39fec8ce26",
+    "url": "/udit-portfolio/static/js/3.bc6ca651.chunk.js"
   },
   {
-    "revision": "a0527d78bd68bdd2cf66",
-    "url": "/udit-portfolio/static/js/4.4acbba30.chunk.js"
+    "revision": "a3ee90c364b9d42e668b",
+    "url": "/udit-portfolio/static/js/4.cb7f979c.chunk.js"
   },
   {
-    "revision": "bfc337b000e2a5f3a5ea",
-    "url": "/udit-portfolio/static/js/main.4915a5fa.chunk.js"
+    "revision": "a99dfec29d73c033bcfd",
+    "url": "/udit-portfolio/static/js/main.f5e5d8ba.chunk.js"
   },
   {
-    "revision": "c15f884ad14f1a11a20c",
-    "url": "/udit-portfolio/static/js/runtime-main.3660a16f.js"
+    "revision": "178af95a04735915845e",
+    "url": "/udit-portfolio/static/js/runtime-main.437becce.js"
   },
   {
     "revision": "21f233e19402cc4a66866a7f31191f0d",
@@ -50,6 +50,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "b17b961bc3c5dacfa2bff51481f8b002",
     "url": "/udit-portfolio/static/media/ambulance.b17b961b.png"
+  },
+  {
+    "revision": "036f841b3c3620ac1a5aa151cd89186b",
+    "url": "/udit-portfolio/static/media/cerebry_logo.036f841b.jpg"
   },
   {
     "revision": "47a7a717679b640ceb1b05d38c480a61",

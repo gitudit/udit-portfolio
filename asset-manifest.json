@@ -1,27 +1,28 @@
 {
   "files": {
     "main.css": "/udit-portfolio/static/css/main.731d544e.chunk.css",
-    "main.js": "/udit-portfolio/static/js/main.4915a5fa.chunk.js",
-    "main.js.map": "/udit-portfolio/static/js/main.4915a5fa.chunk.js.map",
-    "runtime-main.js": "/udit-portfolio/static/js/runtime-main.3660a16f.js",
-    "runtime-main.js.map": "/udit-portfolio/static/js/runtime-main.3660a16f.js.map",
-    "static/js/2.37e1c0fd.chunk.js": "/udit-portfolio/static/js/2.37e1c0fd.chunk.js",
-    "static/js/2.37e1c0fd.chunk.js.map": "/udit-portfolio/static/js/2.37e1c0fd.chunk.js.map",
+    "main.js": "/udit-portfolio/static/js/main.f5e5d8ba.chunk.js",
+    "main.js.map": "/udit-portfolio/static/js/main.f5e5d8ba.chunk.js.map",
+    "runtime-main.js": "/udit-portfolio/static/js/runtime-main.437becce.js",
+    "runtime-main.js.map": "/udit-portfolio/static/js/runtime-main.437becce.js.map",
+    "static/js/2.a19d499d.chunk.js": "/udit-portfolio/static/js/2.a19d499d.chunk.js",
+    "static/js/2.a19d499d.chunk.js.map": "/udit-portfolio/static/js/2.a19d499d.chunk.js.map",
     "static/css/3.3a26ebde.chunk.css": "/udit-portfolio/static/css/3.3a26ebde.chunk.css",
-    "static/js/3.11f31bc7.chunk.js": "/udit-portfolio/static/js/3.11f31bc7.chunk.js",
-    "static/js/3.11f31bc7.chunk.js.map": "/udit-portfolio/static/js/3.11f31bc7.chunk.js.map",
+    "static/js/3.bc6ca651.chunk.js": "/udit-portfolio/static/js/3.bc6ca651.chunk.js",
+    "static/js/3.bc6ca651.chunk.js.map": "/udit-portfolio/static/js/3.bc6ca651.chunk.js.map",
     "static/css/4.ea3dbbf2.chunk.css": "/udit-portfolio/static/css/4.ea3dbbf2.chunk.css",
-    "static/js/4.4acbba30.chunk.js": "/udit-portfolio/static/js/4.4acbba30.chunk.js",
-    "static/js/4.4acbba30.chunk.js.map": "/udit-portfolio/static/js/4.4acbba30.chunk.js.map",
+    "static/js/4.cb7f979c.chunk.js": "/udit-portfolio/static/js/4.cb7f979c.chunk.js",
+    "static/js/4.cb7f979c.chunk.js.map": "/udit-portfolio/static/js/4.cb7f979c.chunk.js.map",
     "index.html": "/udit-portfolio/index.html",
-    "precache-manifest.591e72bf71a099ce2f152b269fbafe75.js": "/udit-portfolio/precache-manifest.591e72bf71a099ce2f152b269fbafe75.js",
+    "precache-manifest.76bee330cc858ab6a4b763b177e0a738.js": "/udit-portfolio/precache-manifest.76bee330cc858ab6a4b763b177e0a738.js",
     "service-worker.js": "/udit-portfolio/service-worker.js",
     "static/css/3.3a26ebde.chunk.css.map": "/udit-portfolio/static/css/3.3a26ebde.chunk.css.map",
     "static/css/4.ea3dbbf2.chunk.css.map": "/udit-portfolio/static/css/4.ea3dbbf2.chunk.css.map",
     "static/css/main.731d544e.chunk.css.map": "/udit-portfolio/static/css/main.731d544e.chunk.css.map",
-    "static/js/2.37e1c0fd.chunk.js.LICENSE.txt": "/udit-portfolio/static/js/2.37e1c0fd.chunk.js.LICENSE.txt",
+    "static/js/2.a19d499d.chunk.js.LICENSE.txt": "/udit-portfolio/static/js/2.a19d499d.chunk.js.LICENSE.txt",
     "static/media/index.css": "/udit-portfolio/static/media/Montserrat-Regular.ee653992.ttf",
     "static/media/ambulance.png": "/udit-portfolio/static/media/ambulance.b17b961b.png",
+    "static/media/cerebry_logo.jpg": "/udit-portfolio/static/media/cerebry_logo.036f841b.jpg",
     "static/media/codeInLogo.webp": "/udit-portfolio/static/media/codeInLogo.47a7a717.webp",
     "static/media/contactMailDark.svg": "/udit-portfolio/static/media/contactMailDark.51cf7192.svg",
     "static/media/developerActivity.svg": "/udit-portfolio/static/media/developerActivity.59389695.svg",
@@ -34,9 +35,9 @@
     "static/media/TalkCard.css": "/udit-portfolio/static/media/talksCardBack.39eff4a9.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.3660a16f.js",
-    "static/js/2.37e1c0fd.chunk.js",
+    "static/js/runtime-main.437becce.js",
+    "static/js/2.a19d499d.chunk.js",
     "static/css/main.731d544e.chunk.css",
-    "static/js/main.4915a5fa.chunk.js"
+    "static/js/main.f5e5d8ba.chunk.js"
   ]
 }
