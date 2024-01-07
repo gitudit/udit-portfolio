@@ -1,43 +1,43 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "31351697b2d08fffcc51726fb3f9e8c6",
+    "revision": "1e95f778961a3a06693b7eb27341e9a3",
     "url": "/udit-portfolio/index.html"
   },
   {
-    "revision": "badffeb8ab39fec8ce26",
+    "revision": "3bca240ba77a3ac0a87c",
     "url": "/udit-portfolio/static/css/3.3a26ebde.chunk.css"
   },
   {
-    "revision": "a3ee90c364b9d42e668b",
+    "revision": "c0507880f8053a2e17c0",
     "url": "/udit-portfolio/static/css/4.ea3dbbf2.chunk.css"
   },
   {
-    "revision": "9328c9cb0f72d0049b37",
-    "url": "/udit-portfolio/static/css/main.731d544e.chunk.css"
+    "revision": "0c64c701bf7ec4eeef8c",
+    "url": "/udit-portfolio/static/css/main.3b9f6c6a.chunk.css"
   },
   {
-    "revision": "b57fc2d46edcc37513a0",
-    "url": "/udit-portfolio/static/js/2.a19d499d.chunk.js"
+    "revision": "d6169c67448c25870108",
+    "url": "/udit-portfolio/static/js/2.94b9dc4e.chunk.js"
   },
   {
     "revision": "0a6d64cd3b49be6a14afdf21fa7c6d43",
-    "url": "/udit-portfolio/static/js/2.a19d499d.chunk.js.LICENSE.txt"
+    "url": "/udit-portfolio/static/js/2.94b9dc4e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "badffeb8ab39fec8ce26",
-    "url": "/udit-portfolio/static/js/3.bc6ca651.chunk.js"
+    "revision": "3bca240ba77a3ac0a87c",
+    "url": "/udit-portfolio/static/js/3.98c72519.chunk.js"
   },
   {
-    "revision": "a3ee90c364b9d42e668b",
-    "url": "/udit-portfolio/static/js/4.cb7f979c.chunk.js"
+    "revision": "c0507880f8053a2e17c0",
+    "url": "/udit-portfolio/static/js/4.50612bbe.chunk.js"
   },
   {
-    "revision": "9328c9cb0f72d0049b37",
-    "url": "/udit-portfolio/static/js/main.0d6df155.chunk.js"
+    "revision": "0c64c701bf7ec4eeef8c",
+    "url": "/udit-portfolio/static/js/main.9ba3bc6e.chunk.js"
   },
   {
-    "revision": "178af95a04735915845e",
-    "url": "/udit-portfolio/static/js/runtime-main.437becce.js"
+    "revision": "859b6f7305ccd655e189",
+    "url": "/udit-portfolio/static/js/runtime-main.09adf9cd.js"
   },
   {
     "revision": "21f233e19402cc4a66866a7f31191f0d",
@@ -50,6 +50,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "b17b961bc3c5dacfa2bff51481f8b002",
     "url": "/udit-portfolio/static/media/ambulance.b17b961b.png"
+  },
+  {
+    "revision": "40bd535ec116f49fd2bba165b21a01bb",
+    "url": "/udit-portfolio/static/media/arrow-left-circle.40bd535e.svg"
+  },
+  {
+    "revision": "3d08ffa9636cf09062641eeb7d7928f7",
+    "url": "/udit-portfolio/static/media/arrow-right-circle.3d08ffa9.svg"
   },
   {
     "revision": "036f841b3c3620ac1a5aa151cd89186b",
@@ -66,6 +74,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "59389695208d7454c6607bed51ed4316",
     "url": "/udit-portfolio/static/media/developerActivity.59389695.svg"
+  },
+  {
+    "revision": "33c84e118f66d9aa7452873f1852721c",
+    "url": "/udit-portfolio/static/media/droneApp.33c84e11.png"
   },
   {
     "revision": "e79c639294c805688be731921368c8f8",
