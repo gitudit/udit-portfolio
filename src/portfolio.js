@@ -153,7 +153,7 @@ const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
     {
-      role: "SDE, Frontend",
+      role: "SDE Frontend",
       company: "Cerebry",
       companylogo: require("./assets/images/cerebry_logo.jpg"),
       date: "Sept 2023 – Current",
@@ -221,12 +221,34 @@ const bigProjects = {
   projects: [
     {
       image: require("./assets/images/ambulance.png"),
-      projectName: "Wheels For Wellness(Patent No: 202221006822)",
+      projectName: "Wheels For Wellness",
       projectDesc: "Emergency ambulance allocation and health-crisis management system.",
       footerLink: [
         {
           name: "Github Source",
           url: "https://github.com/udit1707/wheels-for-wellnesss"
+        }
+      ]
+    },
+    {
+      image: require("./assets/images/foodApp.png"),
+      projectName: "Table Time",
+      projectDesc: "A comprehensive Food Delivery app",
+      footerLink: [
+        {
+          name: "Github Source",
+          url: "https://github.com/udit1707/TableTime"
+        }
+      ]
+    },
+    {
+      image: require("./assets/images/droneApp.png"),
+      projectName: "Drone Simulator @ Mapbox",
+      projectDesc: "Paint drone motion on Google Maps based on user-provided information",
+      footerLink: [
+        {
+          name: "Github Source",
+          url: "https://github.com/udit1707/drone-simulator"
         }
       ]
     },

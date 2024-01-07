@@ -1,10 +1,26 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import "./StartupProjects.css";
 import {bigProjects} from "../../portfolio";
 import {Fade} from "react-reveal";
 import StyleContext from "../../contexts/StyleContext";
+import LeftArrow from "../../assets/images/arrow-left-circle.svg";
+import RightArrow from "../../assets/images/arrow-right-circle.svg";
 
 export default function StartupProject() {
+  const [startIndex, setStartIndex] = useState(0);
+
+  const handleClickRight = () => {
+    if (startIndex < bigProjects.projects.length - 3) {
+      setStartIndex(startIndex + 1);
+    }
+  };
+
+  const handleClickLeft = () => {
+    if (startIndex > 0) {
+      setStartIndex(startIndex - 1);
+    }
+  };
+
   function openProjectInNewWindow(url) {
     var win = window.open(url, "_blank");
     win.focus();
@@ -13,11 +29,18 @@ export default function StartupProject() {
   if (!bigProjects.display) {
     return null;
   }
+
+  const visibleItems = bigProjects.projects.slice(startIndex, startIndex + 3);
+
   return (
     <Fade bottom duration={1000} distance="20px">
       <div className="main" id="projects">
         <div>
+          <div className="skills-heading-cnt">
           <h1 className="skills-heading">{bigProjects.title}</h1>
+          <img src={LeftArrow} className="nav-arrow" alt="left" onClick={handleClickLeft}/>
+          <img src={RightArrow} className="nav-arrow" alt="left" onClick={handleClickRight}/>
+          </div>
           <p
             className={
               isDark
@@ -29,7 +52,7 @@ export default function StartupProject() {
           </p>
 
           <div className="projects-container">
-            {bigProjects.projects.map((project, i) => {
+            {visibleItems.map((project, i) => {
               return (
                 <div
                   key={i}

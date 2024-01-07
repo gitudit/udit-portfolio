@@ -20,6 +20,7 @@
   font-size: 56px;
   font-weight: 400;
   color:  rgb(142, 117, 131) !important;
+  flex: 1 0 0;
 }
 .subTitle {
   color: #868e96;
