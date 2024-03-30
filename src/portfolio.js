@@ -220,6 +220,17 @@ const bigProjects = {
   subtitle: "",
   projects: [
     {
+      image: require("./assets/images/playodyssey.png"),
+      projectName: "Play Odyssey",
+      projectDesc: "A cutting-edge web-playlist manager and inhouse-video player.",
+      footerLink: [
+        {
+          name: "Github Source",
+          url: "https://github.com/udit1707/PlayOdyssey"
+        }
+      ]
+    },
+    {
       image: require("./assets/images/ambulance.png"),
       projectName: "Wheels For Wellness",
       projectDesc: "Emergency ambulance allocation and health-crisis management system.",
