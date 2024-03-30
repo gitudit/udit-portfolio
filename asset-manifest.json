@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/udit-portfolio/static/css/main.3b9f6c6a.chunk.css",
-    "main.js": "/udit-portfolio/static/js/main.9ba3bc6e.chunk.js",
-    "main.js.map": "/udit-portfolio/static/js/main.9ba3bc6e.chunk.js.map",
-    "runtime-main.js": "/udit-portfolio/static/js/runtime-main.09adf9cd.js",
-    "runtime-main.js.map": "/udit-portfolio/static/js/runtime-main.09adf9cd.js.map",
-    "static/js/2.94b9dc4e.chunk.js": "/udit-portfolio/static/js/2.94b9dc4e.chunk.js",
-    "static/js/2.94b9dc4e.chunk.js.map": "/udit-portfolio/static/js/2.94b9dc4e.chunk.js.map",
+    "main.js": "/udit-portfolio/static/js/main.d6ff0464.chunk.js",
+    "main.js.map": "/udit-portfolio/static/js/main.d6ff0464.chunk.js.map",
+    "runtime-main.js": "/udit-portfolio/static/js/runtime-main.8ff33044.js",
+    "runtime-main.js.map": "/udit-portfolio/static/js/runtime-main.8ff33044.js.map",
+    "static/js/2.bfba47c6.chunk.js": "/udit-portfolio/static/js/2.bfba47c6.chunk.js",
+    "static/js/2.bfba47c6.chunk.js.map": "/udit-portfolio/static/js/2.bfba47c6.chunk.js.map",
     "static/css/3.3a26ebde.chunk.css": "/udit-portfolio/static/css/3.3a26ebde.chunk.css",
-    "static/js/3.98c72519.chunk.js": "/udit-portfolio/static/js/3.98c72519.chunk.js",
-    "static/js/3.98c72519.chunk.js.map": "/udit-portfolio/static/js/3.98c72519.chunk.js.map",
+    "static/js/3.832aee8a.chunk.js": "/udit-portfolio/static/js/3.832aee8a.chunk.js",
+    "static/js/3.832aee8a.chunk.js.map": "/udit-portfolio/static/js/3.832aee8a.chunk.js.map",
     "static/css/4.ea3dbbf2.chunk.css": "/udit-portfolio/static/css/4.ea3dbbf2.chunk.css",
-    "static/js/4.50612bbe.chunk.js": "/udit-portfolio/static/js/4.50612bbe.chunk.js",
-    "static/js/4.50612bbe.chunk.js.map": "/udit-portfolio/static/js/4.50612bbe.chunk.js.map",
+    "static/js/4.f151d7e4.chunk.js": "/udit-portfolio/static/js/4.f151d7e4.chunk.js",
+    "static/js/4.f151d7e4.chunk.js.map": "/udit-portfolio/static/js/4.f151d7e4.chunk.js.map",
     "index.html": "/udit-portfolio/index.html",
-    "precache-manifest.578b6fb6115607e8dc73a3042306c043.js": "/udit-portfolio/precache-manifest.578b6fb6115607e8dc73a3042306c043.js",
+    "precache-manifest.4e6feb9b60b35a327671e6ee1f00ab8a.js": "/udit-portfolio/precache-manifest.4e6feb9b60b35a327671e6ee1f00ab8a.js",
     "service-worker.js": "/udit-portfolio/service-worker.js",
     "static/css/3.3a26ebde.chunk.css.map": "/udit-portfolio/static/css/3.3a26ebde.chunk.css.map",
     "static/css/4.ea3dbbf2.chunk.css.map": "/udit-portfolio/static/css/4.ea3dbbf2.chunk.css.map",
     "static/css/main.3b9f6c6a.chunk.css.map": "/udit-portfolio/static/css/main.3b9f6c6a.chunk.css.map",
-    "static/js/2.94b9dc4e.chunk.js.LICENSE.txt": "/udit-portfolio/static/js/2.94b9dc4e.chunk.js.LICENSE.txt",
+    "static/js/2.bfba47c6.chunk.js.LICENSE.txt": "/udit-portfolio/static/js/2.bfba47c6.chunk.js.LICENSE.txt",
     "static/media/index.css": "/udit-portfolio/static/media/Montserrat-Regular.ee653992.ttf",
     "static/media/ambulance.png": "/udit-portfolio/static/media/ambulance.b17b961b.png",
     "static/media/arrow-left-circle.svg": "/udit-portfolio/static/media/arrow-left-circle.40bd535e.svg",
@@ -38,9 +38,9 @@
     "static/media/TalkCard.css": "/udit-portfolio/static/media/talksCardBack.39eff4a9.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.09adf9cd.js",
-    "static/js/2.94b9dc4e.chunk.js",
+    "static/js/runtime-main.8ff33044.js",
+    "static/js/2.bfba47c6.chunk.js",
     "static/css/main.3b9f6c6a.chunk.css",
-    "static/js/main.9ba3bc6e.chunk.js"
+    "static/js/main.d6ff0464.chunk.js"
   ]
 }
