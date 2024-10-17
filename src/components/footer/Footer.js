@@ -14,7 +14,7 @@ export default function Footer() {
         </p>
         <p className={isDark ? "dark-mode footer-text" : "footer-text"}>
          <a style={{color:"#847070"}} href="#">
-          <i class="fa fa-map-marker" aria-hidden="true"></i> Kanpur City, India.
+          <i class="fa fa-map-marker" aria-hidden="true"></i> Noida, India.
           </a>
         </p>
       </div>

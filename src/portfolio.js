@@ -63,16 +63,16 @@ https://fontawesome.com/icons?d=gallery */
       fontAwesomeClassname: "fab fa-js"
     },
     {
-      skillName: "python",
-      fontAwesomeClassname: "fab fa-python"
-    },
-    {
-      skillName: "cpp",
-      fontAwesomeClassname: "icon-cplusplus"
-    },
-    {
       skillName: "reactjs",
       fontAwesomeClassname: "fab fa-react"
+    },
+    {
+      skillName: "sass",
+      fontAwesomeClassname: "fab fa-sass"
+    },
+    {
+      skillName: "html",
+      fontAwesomeClassname: "fab fa-html5"
     },
     {
       skillName: "nodejs",
@@ -156,7 +156,7 @@ const workExperiences = {
       role: "SDE Frontend",
       company: "Cerebry",
       companylogo: require("./assets/images/cerebry_logo.jpg"),
-      date: "Sept 2023 – Current",
+      date: "Oct 2023 – Current",
       desc:
         "",
       descBullets: [
@@ -167,7 +167,7 @@ const workExperiences = {
       role: "SDE Intern",
       company: "Scaler By InterviewBit",
       companylogo: require("./assets/images/scaler_logo.jpg"),
-      date: "Jan 2023 – July 2023",
+      date: "Jan 2023 – Sept 2023",
       desc:
         "",
       descBullets: [
