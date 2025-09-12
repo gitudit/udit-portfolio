@@ -10,11 +10,11 @@ export default function Footer() {
     <Fade bottom duration={1000} distance="5px">
       <div className="footer-div">
         <p className={isDark ? "dark-mode footer-text" : "footer-text"}>
-          {emoji("Udit Singh © 2024")}
+          {emoji("Udit Singh © 2025")}
         </p>
         <p className={isDark ? "dark-mode footer-text" : "footer-text"}>
          <a style={{color:"#847070"}} href="#">
-          <i class="fa fa-map-marker" aria-hidden="true"></i> Noida, India.
+          <i class="fa fa-map-marker" aria-hidden="true"></i> Gurugram, India.
           </a>
         </p>
       </div>

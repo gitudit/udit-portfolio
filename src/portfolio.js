@@ -154,9 +154,20 @@ const workExperiences = {
   experience: [
     {
       role: "SDE Frontend",
+      company: "Cars24",
+      companylogo: require("./assets/images/cars24_logo.jpg"),
+      date: "Jan 2025 – Current",
+      desc:
+        "",
+      descBullets: [
+        "Designed and maintained internal design system library adopted by 5+ business verticals",
+      ]
+    },
+    {
+      role: "SDE Frontend",
       company: "Cerebry",
       companylogo: require("./assets/images/cerebry_logo.jpg"),
-      date: "Oct 2023 – Current",
+      date: "Oct 2023 – Jan 2025",
       desc:
         "",
       descBullets: [

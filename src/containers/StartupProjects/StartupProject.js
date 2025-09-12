@@ -1,7 +1,7 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import "./StartupProjects.css";
-import {bigProjects} from "../../portfolio";
-import {Fade} from "react-reveal";
+import { bigProjects } from "../../portfolio";
+import { Fade } from "react-reveal";
 import StyleContext from "../../contexts/StyleContext";
 import LeftArrow from "../../assets/images/arrow-left-circle.svg";
 import RightArrow from "../../assets/images/arrow-right-circle.svg";
@@ -25,7 +25,7 @@ export default function StartupProject() {
     var win = window.open(url, "_blank");
     win.focus();
   }
-  const {isDark} = useContext(StyleContext);
+  const { isDark } = useContext(StyleContext);
   if (!bigProjects.display) {
     return null;
   }
@@ -37,9 +37,23 @@ export default function StartupProject() {
       <div className="main" id="projects">
         <div>
           <div className="skills-heading-cnt">
-          <h1 className="skills-heading">{bigProjects.title}</h1>
-          <img src={LeftArrow} className="nav-arrow" alt="left" onClick={handleClickLeft}/>
-          <img src={RightArrow} className="nav-arrow" alt="left" onClick={handleClickRight}/>
+            <h1 className="skills-heading">{bigProjects.title}</h1>
+            {startIndex > 0 && (
+              <img
+                src={LeftArrow}
+                className="nav-arrow"
+                alt="left"
+                onClick={handleClickLeft}
+              />
+            )}{" "}
+            {startIndex < bigProjects.projects.length -3 && (
+              <img
+                src={RightArrow}
+                className="nav-arrow"
+                alt="left"
+                onClick={handleClickRight}
+              />
+            )}
           </div>
           <p
             className={
