@@ -167,7 +167,8 @@ const workExperiences = {
       date: "March 2026 - Current",
       desc: "",
       descBullets: [
-        "Designed and maintained internal design system library adopted by 5+ business verticals"
+        "Raised accessibility to a 95+ score for employee webviews used by 1M+ employees.",
+        "Enforced a strict TypeScript baseline across 4 product modules, cutting type regressions by 65%."
       ]
     },
     {
