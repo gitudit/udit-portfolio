@@ -1,8 +1,23 @@
 ﻿/* Change this file to get your personal Portfolio */
 
-// Summary And Greeting Section
+import iiitmLogo from "./assets/images/ABVIIITM_logo.jpg";
+import leenaAI from "./assets/images/leenaAI.png";
+import cars24Logo from "./assets/images/cars24_logo.jpg";
+import cerebryLogo from "./assets/images/cerebry_logo.jpg";
+import scalerLogo from "./assets/images/scaler_logo.jpg";
+import altairLogo from "./assets/images/altair_logo.jpg";
+import byjusLogo from "./assets/images/logo_by.jpeg";
+import playOdysseyImage from "./assets/images/playodyssey.png";
+import ambulanceImage from "./assets/images/ambulance.webp";
+import foodAppImage from "./assets/images/foodApp.png";
+import droneAppImage from "./assets/images/droneApp.png";
+import kassandraImage from "./assets/images/kassandralogo.webp";
+import bourbakiImage from "./assets/images/logo512.webp";
+import codeInLogo from "./assets/images/codeInLogo.webp";
+import googleAssistantLogo from "./assets/images/googleAssistantLogo.webp";
+import pwaLogo from "./assets/images/pwaLogo.webp";
 
-import emoji from "react-easy-emoji";
+// Summary And Greeting Section
 
 const illustration = {
   animated: true // set to false to use static SVG
@@ -11,11 +26,10 @@ const illustration = {
 const greeting = {
   username: "Udit Singh",
   title: "Hey there, I'm Udit",
-  subTitle: emoji(
-    "A passionate Full Stack Software Developer 🚀 having an experience of designing and building Web and Mobile applications with JavaScript / Reactjs / Nodejs besides extending the application functionalities to a suite of stacks and frameworks."
-  ),
+  subTitle:
+    "A passionate Full Stack Software Developer 🚀 having an experience of designing and building Web and Mobile applications with JavaScript / Reactjs / Nodejs besides extending the application functionalities to a suite of stacks and frameworks.",
   resumeLink:
-    "https://drive.google.com/file/d/1_3GkHMuQ-zDgqFZBVHYRzS1yMJ55wUp9/view?usp=sharing",
+    "https://drive.google.com/file/d/1kL5-REwkZzt-0l-7uUTDWoYrV7cj0_Ui/view?usp=sharing",
   displayGreeting: true // Set false to hide this section, defaults to true
 };
 
@@ -24,15 +38,15 @@ const greeting = {
 const socialMediaLinks = {
   github: "https://github.com/udit1707",
   linkedin: "https://www.linkedin.com/in/udit-singh/",
-  kaggle:"https://www.kaggle.com/udit1907",
+  kaggle: "https://www.kaggle.com/udit1907",
   gmail: "uditsingh294@gmail.com",
-  hackerrank:"https://www.hackerrank.com/pinkman1707",
+  hackerrank: "https://www.hackerrank.com/pinkman1707",
   // gitlab: "https://gitlab.com/",
   // facebook: "https://www.facebook.com/",
-  //medium: "https://medium.com/@davidrakosi",
-  //stackoverflow: "https://stackoverflow.com/users/13263979/drakosi",
-  //instagram: 'https://www.instagram.com/davidrakosi/',
-  //twitter: 'https://twitter.com/davidrakosi_',
+  // medium: "https://medium.com/",
+  // stackoverflow: "https://stackoverflow.com/",
+  // instagram: "https://www.instagram.com/",
+  // twitter: "https://twitter.com/",
   display: true // Set true to display this section, defaults to false
 };
 
@@ -42,20 +56,14 @@ const skillsSection = {
   title: "What I do",
   subTitle: "SOFTWARE DEVELOPER WHO NEVER SETTLES FOR ONE STACK",
   skills: [
-    emoji(
-      " Likes to think along the lines of clean, robust and object-oriented code, be it a project or solving a real-time problem in a coding contest."
-    ),
-    emoji(
-      " Develops highly scalable web-services and robust feature endpoints using Node.js. Make engaging user interfaces using Reactjs framework"
-    ),
-    emoji(" Integrating my application softwares with machine learning problem-solving and creating respective pipelines."),
-    emoji(
-      " Integration, testing and deployment on third party cloud based services such as AWS, Azure and firebase."
-    )
+    " Likes to think along the lines of clean, robust and object-oriented code, be it a project or solving a real-time problem in a coding contest.",
+    " Develops highly scalable web-services and robust feature endpoints using Node.js. Make engaging user interfaces using Reactjs framework",
+    " Integrating my application softwares with machine learning problem-solving and creating respective pipelines.",
+    " Integration, testing and deployment on third party cloud based services such as AWS, Azure and firebase."
   ],
 
-  /* Make Sure to include correct Font Awesome Classname to view your icon
-https://fontawesome.com/icons?d=gallery */
+  /* Icon classes come from the self-hosted subsets in src/styles/icons.css.
+     To add an icon: add its rule there and re-run `npm run fonts:subset` with the new codepoint. */
 
   softwareSkills: [
     {
@@ -78,7 +86,6 @@ https://fontawesome.com/icons?d=gallery */
       skillName: "nodejs",
       fontAwesomeClassname: "fab fa-node"
     },
-    
     {
       skillName: "mongodb",
       fontAwesomeClassname: "icon-mongodb"
@@ -99,7 +106,6 @@ https://fontawesome.com/icons?d=gallery */
       skillName: "git",
       fontAwesomeClassname: "icon-git"
     }
-
   ],
   display: true // Set false to hide this section, defaults to true
 };
@@ -111,15 +117,13 @@ const educationInfo = {
   schools: [
     {
       schoolName: "Indian Institue of Information Technology, Gwalior",
-      logo: require("./assets/images/ABVIIITM_logo.jpg"),
+      logo: iiitmLogo,
       subHeader: "Integrated Bachelors and Masters in Information Technology",
       duration: "July 2018 - May 2023",
       desc: "CGPA: 8.17/10.0",
-      descBullets: [
-        ""
-      ]
+      descBullets: [""]
     }
-   ]
+  ]
 };
 
 // Your top 3 proficient stacks/tech experience
@@ -144,43 +148,57 @@ const techStack = {
       progressPercentage: "80%"
     }
   ],
-  displayCodersrank: true // Set true to display codersrank badges section need to changes your username in src/containers/skillProgress/skillProgress.js:17:62, defaults to false
+  displayCodersrank: true
 };
 
 // Work experience section
+// `bannerColor` is the dominant colour of the logo, as computed by ColorThief in the browser.
+// It is stored here so the card renders in its final colour immediately (and in the pre-rendered
+// HTML). Omit it for a new logo and the card will compute it at runtime instead.
 
 const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
+     {
+      role: "SDE 2",
+      company: "Leena AI",
+      companylogo: leenaAI,
+      bannerColor: [12, 116, 236],
+      date: "March 2026 - Current",
+      desc: "",
+      descBullets: [
+        "Designed and maintained internal design system library adopted by 5+ business verticals"
+      ]
+    },
     {
       role: "SDE Frontend",
       company: "Cars24",
-      companylogo: require("./assets/images/cars24_logo.jpg"),
-      date: "Jan 2025 – Current",
-      desc:
-        "",
+      companylogo: cars24Logo,
+      bannerColor: [70, 54, 247],
+      date: "Jan 2025 – March 2026",
+      desc: "",
       descBullets: [
-        "Designed and maintained internal design system library adopted by 5+ business verticals",
+        "Designed and maintained internal design system library adopted by 5+ business verticals"
       ]
     },
     {
       role: "SDE Frontend",
       company: "Cerebry",
-      companylogo: require("./assets/images/cerebry_logo.jpg"),
+      companylogo: cerebryLogo,
+      bannerColor: [237, 247, 250],
       date: "Oct 2023 – Jan 2025",
-      desc:
-        "",
+      desc: "",
       descBullets: [
-        "Elevated system performance, fixed critical UI issues, and boosted user engagement by 15% through an accessibility feature,",
+        "Elevated system performance, fixed critical UI issues, and boosted user engagement by 15% through an accessibility feature,"
       ]
     },
     {
       role: "SDE Intern",
       company: "Scaler By InterviewBit",
-      companylogo: require("./assets/images/scaler_logo.jpg"),
+      companylogo: scalerLogo,
+      bannerColor: [212, 214, 217],
       date: "Jan 2023 – Sept 2023",
-      desc:
-        "",
+      desc: "",
       descBullets: [
         "Enhancing mentee retention working on the mentorship pod",
         "Optimizing scaler interview pod using modular CSS"
@@ -189,10 +207,10 @@ const workExperiences = {
     {
       role: "SDE Intern",
       company: "Altair",
-      companylogo: require("./assets/images/altair_logo.jpg"),
+      companylogo: altairLogo,
+      bannerColor: [251, 237, 227],
       date: "May 2022 – Dec 2022",
-      desc:
-        "",
+      desc: "",
       descBullets: [
         "Migrating the entire Hypermesh local framework and enabling access on cloud",
         "Translating UI using Python GUI wrapping MS Fluent UI"
@@ -201,10 +219,10 @@ const workExperiences = {
     {
       role: "Software Engineer Intern",
       company: "BYJU'S",
-      companylogo: require("./assets/images/logo_by.jpeg"),
+      companylogo: byjusLogo,
+      bannerColor: [113, 48, 123],
       date: "November 2021 – March 2022",
-      desc:
-        "",
+      desc: "",
       descBullets: [
         "Working with the Animation and Arts tech team.",
         "Translated design wire-frames into website elements.",
@@ -215,10 +233,10 @@ const workExperiences = {
 };
 
 /* Your Open Source Section to View Your Github Pinned Projects
-To know how to get github key look at readme.md */
+   Set VITE_GITHUB_TOKEN in .env and `display: true` to enable it. */
 
 const openSource = {
-  githubConvertedToken: process.env.REACT_APP_GITHUB_TOKEN,
+  githubConvertedToken: import.meta.env.VITE_GITHUB_TOKEN,
   githubUserName: "udit1707", // Change to your github username to view your profile in Contact Section.
   showGithubProfile: "true", // Set true or false to show Contact profile using Github, defaults to true
   display: false // Set false to hide this section, defaults to true
@@ -231,9 +249,10 @@ const bigProjects = {
   subtitle: "",
   projects: [
     {
-      image: require("./assets/images/playodyssey.png"),
+      image: playOdysseyImage,
       projectName: "Play Odyssey",
-      projectDesc: "A cutting-edge web-playlist manager and inhouse-video player.",
+      projectDesc:
+        "A cutting-edge web-playlist manager and inhouse-video player.",
       footerLink: [
         {
           name: "Github Source",
@@ -242,9 +261,10 @@ const bigProjects = {
       ]
     },
     {
-      image: require("./assets/images/ambulance.png"),
+      image: ambulanceImage,
       projectName: "Wheels For Wellness",
-      projectDesc: "Emergency ambulance allocation and health-crisis management system.",
+      projectDesc:
+        "Emergency ambulance allocation and health-crisis management system.",
       footerLink: [
         {
           name: "Github Source",
@@ -253,7 +273,7 @@ const bigProjects = {
       ]
     },
     {
-      image: require("./assets/images/foodApp.png"),
+      image: foodAppImage,
       projectName: "Table Time",
       projectDesc: "A comprehensive Food Delivery app",
       footerLink: [
@@ -264,9 +284,10 @@ const bigProjects = {
       ]
     },
     {
-      image: require("./assets/images/droneApp.png"),
+      image: droneAppImage,
       projectName: "Drone Simulator @ Mapbox",
-      projectDesc: "Paint drone motion on Google Maps based on user-provided information",
+      projectDesc:
+        "Paint drone motion on Google Maps based on user-provided information",
       footerLink: [
         {
           name: "Github Source",
@@ -275,9 +296,10 @@ const bigProjects = {
       ]
     },
     {
-      image: require("./assets/images/kassandralogo.png"),
+      image: kassandraImage,
       projectName: "Kassandra",
-      projectDesc: "Smart Retail Analytics and Employee Empowerment Solution powered by Azure Cloud Services.",
+      projectDesc:
+        "Smart Retail Analytics and Employee Empowerment Solution powered by Azure Cloud Services.",
       footerLink: [
         {
           name: "Github Source",
@@ -287,9 +309,10 @@ const bigProjects = {
       ]
     },
     {
-      image: require("./assets/images/logo512.png"),
+      image: bourbakiImage,
       projectName: "Bourbaki",
-      projectDesc: "An android application that can automatically solve mathematical problems from both handwritten text images and computer font text.",
+      projectDesc:
+        "An android application that can automatically solve mathematical problems from both handwritten text images and computer font text.",
       footerLink: [
         {
           name: "Github Source",
@@ -305,7 +328,7 @@ const bigProjects = {
 // Include certificates, talks etc
 
 const achievementSection = {
-  title: emoji("Achievements And Certifications 🏆 "),
+  title: "Achievements And Certifications 🏆 ",
   subtitle:
     "Achievements, Certifications, Award Letters and Some Cool Stuff that I have done !",
 
@@ -314,22 +337,19 @@ const achievementSection = {
       title: "Google Code-In Finalist",
       subtitle:
         "First Pakistani to be selected as Google Code-in Finalist from 4000 students from 77 different countries.",
-      image: require("./assets/images/codeInLogo.webp"),
+      image: codeInLogo,
       footerLink: [
         {
           name: "Certification",
-          url:
-            ""
+          url: ""
         },
         {
           name: "Award Letter",
-          url:
-            ""
+          url: ""
         },
         {
           name: "Google Code-in Blog",
-          url:
-            ""
+          url: ""
         }
       ]
     },
@@ -337,22 +357,20 @@ const achievementSection = {
       title: "Google Assistant Action",
       subtitle:
         "Developed a Google Assistant Action JavaScript Guru that is available on 2 Billion devices world wide.",
-      image: require("./assets/images/googleAssistantLogo.webp"),
+      image: googleAssistantLogo,
       footerLink: [
         {
           name: "View Google Assistant Action",
-          url:
-            ""
+          url: ""
         }
       ]
     },
-
     {
       title: "PWA Web App Developer",
       subtitle: "Completed Certifcation from SMIT for PWA Web App Development",
-      image: require("./assets/images/pwaLogo.webp"),
+      image: pwaLogo,
       footerLink: [
-        {name: "Certification", url: ""},
+        { name: "Certification", url: "" },
         {
           name: "Final Project",
           url: ""
@@ -372,8 +390,7 @@ const blogSection = {
 
   blogs: [
     {
-      url:
-        "https://blog.usejournal.com/create-a-google-assistant-action-and-win-a-google-t-shirt-and-cloud-credits-4a8d86d76eae",
+      url: "https://blog.usejournal.com/create-a-google-assistant-action-and-win-a-google-t-shirt-and-cloud-credits-4a8d86d76eae",
       title: "Win a Google Assistant Tshirt and $200 in Google Cloud Credits",
       description:
         "Do you want to win $200 and Google Assistant Tshirt by creating a Google Assistant Action in less then 30 min?"
@@ -392,9 +409,7 @@ const blogSection = {
 
 const talkSection = {
   title: "TALKS",
-  subtitle: emoji(
-    ""
-  ),
+  subtitle: "",
 
   talks: [
     {
@@ -410,28 +425,26 @@ const talkSection = {
 // Podcast Section
 
 const podcastSection = {
-  title: emoji("Podcast 🎙️"),
+  title: "Podcast 🎙️",
   subtitle: "I LOVE TO TALK ABOUT MYSELF AND TECHNOLOGY",
 
   // Please Provide with Your Podcast embeded Link
-  podcast: [
-    ""
-  ],
+  podcast: [""],
   display: false // Set false to hide this section, defaults to true
 };
 
 const contactInfo = {
-  title: emoji("Contact Me ☎️"),
+  title: "Contact Me ☎️",
   subtitle:
     "Discuss a project or just want to say hi? My Inbox is open for all.",
-  number: "(323) 768 0674",
-  email_address: "contact@davidrakosi.com"
+  number: "",
+  email_address: "uditsingh294@gmail.com"
 };
 
-// Twitter Section
+// Twitter Section (component removed; kept for the UI revamp)
 
 const twitterDetails = {
-  userName: "davidrakosi_", //Replace "twitter" with your twitter username without @
+  userName: "",
   display: false // Set true to display this section, defaults to false
 };
 

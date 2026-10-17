@@ -1,15 +1,18 @@
+@import "./styles/icons.css";
+
+/* Self-hosted, subset WOFF2 versions of the original fonts (see tools/fonts-src and scripts/subset-fonts.mjs). */
 @font-face {
   font-family: "Agustina Regular";
   font-style: normal;
   font-weight: normal;
   src: local("Agustina Regular"),
-    url("./assets/fonts/Agustina.woff") format("woff");
+    url("./assets/fonts/Agustina.woff2") format("woff2");
   font-display: swap;
 }
 @font-face {
   font-family: "Montserrat";
   src: local("Montserrat"),
-    url("./assets/fonts/Montserrat-Regular.ttf") format("woff");
+    url("./assets/fonts/Montserrat-Regular.woff2") format("woff2");
   font-display: swap;
 }
 code {
