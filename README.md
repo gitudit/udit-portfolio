@@ -1,6 +1,7 @@
 # The Ride — udit-portfolio
 
-Personal portfolio, served from GitHub Pages at <https://gitudit.github.io/udit-portfolio/>.
+Personal portfolio, served from GitHub Pages at <https://uditsingh.com/> (the old project URL
+<https://gitudit.github.io/udit-portfolio/> redirects there).
 
 A theme park with four lands. The ride runs through the first three: Campus Grounds, the Training
 Track (internships, "junior coasters") and, after a height check, the Thrill Zone (full-time
@@ -32,8 +33,8 @@ terminal, achievements and an express pass round it off.
 | `npm run typecheck` | `tsc --noEmit`. |
 | `npm run lint` | ESLint over the repo. |
 | `npm run format` | Prettier. |
-| `npm run deploy` | Build for the GitHub Pages project URL and push `build/` to `gh-pages`. |
-| `npm run deploy:domain` | Build for `https://uditsingh.com/` (base `/`), add `CNAME`, push to `gh-pages`. |
+| `npm run deploy` | Build for `https://uditsingh.com/` (base `/`), add `CNAME`, push `build/` to `gh-pages`. |
+| `npm run deploy:pages` | Build for the old GitHub Pages project path instead (no `CNAME`; only if the domain is ever dropped). |
 | `node scripts/subset-fonts.mjs` | Regenerate the subset variable fonts in `src/assets/fonts` from `tools/fonts-src`. |
 
 Use Node 26: `nvm use` (nvm-windows: `nvm use 26.12.0`).
@@ -45,17 +46,12 @@ custom domain).
 
 ## Custom domain (uditsingh.com) on GitHub Pages
 
-1. Buy the domain at any registrar.
-2. At the registrar's DNS, add four `A` records for the apex (`@`) pointing to GitHub Pages:
-   `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, and a `CNAME` record
-   for `www` pointing to `gitudit.github.io`.
-3. Run `npm run deploy:domain`. It builds with `base: "/"`, writes `build/CNAME` with the domain and
-   publishes. Every deploy must go through this script, because `gh-pages` replaces the branch and a
-   `CNAME` that is not in the build would be lost.
-4. In the repository, Settings → Pages: confirm the custom domain shows `uditsingh.com`, wait for the
-   DNS check, then tick "Enforce HTTPS".
-
-The old project URL keeps working: GitHub redirects it to the custom domain.
+DNS lives at GoDaddy: four `A` records for `@` pointing to GitHub Pages (`185.199.108.153`,
+`185.199.109.153`, `185.199.110.153`, `185.199.111.153`) and `www` aliased to the apex. `npm run deploy`
+builds with `base: "/"`, writes `build/CNAME` and publishes; every deploy must go through it, because
+`gh-pages` replaces the branch and a `CNAME` that is not in the build would be lost. GitHub issues the
+TLS certificate itself; keep "Enforce HTTPS" ticked in Settings → Pages. The old project URL redirects
+to the domain.
 
 ## Where things are
 
