@@ -32,13 +32,30 @@ terminal, achievements and an express pass round it off.
 | `npm run typecheck` | `tsc --noEmit`. |
 | `npm run lint` | ESLint over the repo. |
 | `npm run format` | Prettier. |
-| `npm run deploy` | Build and push `build/` to the `gh-pages` branch. |
+| `npm run deploy` | Build for the GitHub Pages project URL and push `build/` to `gh-pages`. |
+| `npm run deploy:domain` | Build for `https://uditsingh.com/` (base `/`), add `CNAME`, push to `gh-pages`. |
 | `node scripts/subset-fonts.mjs` | Regenerate the subset variable fonts in `src/assets/fonts` from `tools/fonts-src`. |
 
 Use Node 26: `nvm use` (nvm-windows: `nvm use 26.12.0`).
 
 Environment variables live in `.env` and must be prefixed with `VITE_`: `VITE_serviceId`,
-`VITE_templateId`, `VITE_userId` (EmailJS public ids, used by the contact form).
+`VITE_templateId`, `VITE_userId` (EmailJS public ids, used by the contact form) and `VITE_SITE_URL`
+(the public URL used for the canonical and Open Graph tags; the deploy helper overrides it for the
+custom domain).
+
+## Custom domain (uditsingh.com) on GitHub Pages
+
+1. Buy the domain at any registrar.
+2. At the registrar's DNS, add four `A` records for the apex (`@`) pointing to GitHub Pages:
+   `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, and a `CNAME` record
+   for `www` pointing to `gitudit.github.io`.
+3. Run `npm run deploy:domain`. It builds with `base: "/"`, writes `build/CNAME` with the domain and
+   publishes. Every deploy must go through this script, because `gh-pages` replaces the branch and a
+   `CNAME` that is not in the build would be lost.
+4. In the repository, Settings → Pages: confirm the custom domain shows `uditsingh.com`, wait for the
+   DNS check, then tick "Enforce HTTPS".
+
+The old project URL keeps working: GitHub redirects it to the custom domain.
 
 ## Where things are
 
@@ -56,11 +73,14 @@ Environment variables live in `.env` and must be prefixed with `VITE_`: `VITE_se
   (`data-land` attribute fallback).
 - `src/components/mapData.ts`, `MapGraphic.tsx`, `ParkMap.tsx` — the park map: one SVG path, pins and
   the "you are here" car on CSS motion paths.
-- `src/components/Midway.tsx` — the skills carousel and the project posters.
+- `src/components/Midway.tsx`, `SkillCarousel.tsx` — the skills carousel (lazy; a plain list is
+  pre-rendered) and the project posters.
 - `src/components/attractions/*` — one lazy vignette per station, each generic by design.
 - `src/styles/tokens.css` → `app.css` → `details.css` → `park.css` — design tokens, components, details,
   the park, all in cascade layers.
 - `scripts/prerender.mjs` — injects the pre-rendered markup and inlines the CSS.
+- `scripts/deploy.mjs` — the deploy helper (project URL by default, `--domain` for the custom domain).
+- `public/favicon.ico`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` — icons cut from the headshot.
 
 ## Accessibility and motion
 

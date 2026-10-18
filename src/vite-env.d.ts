@@ -5,6 +5,8 @@ interface ImportMetaEnv {
   readonly VITE_serviceId: string;
   readonly VITE_templateId: string;
   readonly VITE_userId: string;
+  /** Public site URL for canonical and Open Graph tags. */
+  readonly VITE_SITE_URL: string;
 }
 
 interface ImportMeta {

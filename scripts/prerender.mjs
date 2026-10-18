@@ -8,7 +8,6 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ssrDir = path.join(root, ".ssr-build");
 const buildDir = path.join(root, "build");
 const htmlPath = path.join(buildDir, "index.html");
-const BASE = "/udit-portfolio/";
 
 const ssrEntry = fs.readdirSync(ssrDir).find((f) => /^entry-server.*\.m?js$/.test(f));
 if (!ssrEntry) throw new Error("prerender: SSR entry not found in " + ssrDir);
@@ -25,7 +24,7 @@ html = html.replace(placeholder, `<div id="root">${appHtml}</div>`);
 
 // Inline the single stylesheet: one fewer render-blocking round trip before first paint.
 html = html.replace(/<link rel="stylesheet"[^>]*href="([^"]+\.css)"[^>]*>/, (tag, href) => {
-  const cssPath = path.join(buildDir, href.startsWith(BASE) ? href.slice(BASE.length) : href);
+  const cssPath = path.join(buildDir, href.slice(href.lastIndexOf("/assets/") + 1));
   if (!fs.existsSync(cssPath)) return tag;
   const css = fs.readFileSync(cssPath, "utf8");
   console.log(`prerender: inlined ${path.basename(cssPath)} (${css.length} bytes)`);

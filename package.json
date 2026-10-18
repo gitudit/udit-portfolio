@@ -14,8 +14,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "format": "prettier --write \"./src/**/*.{ts,tsx,css}\" \"./scripts/*.mjs\" \"./*.{mjs,js,json}\"",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build --dotfiles"
+    "deploy": "node scripts/deploy.mjs",
+    "deploy:domain": "node scripts/deploy.mjs --domain uditsingh.com"
   },
   "dependencies": {
     "@emailjs/browser": "^5.0.3",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/use-sync-external-store": "latest",

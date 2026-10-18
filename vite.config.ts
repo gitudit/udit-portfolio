@@ -1,9 +1,11 @@
+/// <reference types="node" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// Served from https://gitudit.github.io/udit-portfolio/ (GitHub Pages sub-path).
+// Served from https://gitudit.github.io/udit-portfolio/ by default. For a custom domain the deploy
+// helper (scripts/deploy.mjs --domain …) sets SITE_BASE=/ and VITE_SITE_URL.
 export default defineConfig({
-  base: "/udit-portfolio/",
+  base: process.env.SITE_BASE ?? "/udit-portfolio/",
   // React Compiler (Oxc port) memoises components and hooks automatically.
   plugins: [react({ compiler: true })],
   build: {
