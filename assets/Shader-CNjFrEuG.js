@@ -1,4 +1,4 @@
-import{o as e,t}from"./react-nWwvugg5.js";import{i as n}from"./index-y6TOJob_.js";var r=e(),i=t(),a=`
+import{o as e,t}from"./react-nWwvugg5.js";import{i as n}from"./index-DJhf-liV.js";var r=e(),i=t(),a=`
 precision mediump float;
 uniform vec2 u_res; uniform float u_time; uniform vec3 u_c1; uniform vec3 u_c2; uniform vec3 u_c3;
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
