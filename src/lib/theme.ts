@@ -19,6 +19,9 @@ export function setTheme(next: Theme, originEl?: Element | null): Theme {
     } catch {
       /* ignore */
     }
+    // Fired after the attribute changes (inside the view transition when there is one), so listeners
+    // such as the hero shader read the new palette, not the old one.
+    window.dispatchEvent(new CustomEvent<Theme>("ride:theme", { detail: next }));
   };
   if (originEl) {
     const r = originEl.getBoundingClientRect();
@@ -37,7 +40,6 @@ export function setTheme(next: Theme, originEl?: Element | null): Theme {
   }
   play(next === "night" ? "whoosh-down" : "whoosh-up");
   if (next === "night") unlock("night-rider");
-  window.dispatchEvent(new CustomEvent<Theme>("ride:theme", { detail: next }));
   return next;
 }
 

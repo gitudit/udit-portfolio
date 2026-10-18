@@ -23,12 +23,16 @@ void main(){
 }`;
 const VERT = `attribute vec2 a; void main(){ gl_Position = vec4(a, 0.0, 1.0); }`;
 
-function cssColor(name: string): [number, number, number] {
-  const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  const m = /^#([0-9a-f]{6})$/i.exec(v);
-  if (!m || !m[1]) return [0.5, 0.5, 0.5];
-  const n = parseInt(m[1], 16);
-  return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+// Resolve a design token to RGB through a hidden probe element, so any CSS colour syntax (hex,
+// rgb(), color-mix()) comes back as the browser computes it: "rgb(r, g, b)" or "color(srgb r g b)".
+function cssColor(probe: HTMLElement, name: string): [number, number, number] {
+  probe.style.backgroundColor = `var(${name})`;
+  const v = getComputedStyle(probe).backgroundColor;
+  const rgb = /^rgba?(s*([d.]+)[,s]+([d.]+)[,s]+([d.]+)/.exec(v);
+  if (rgb) return [Number(rgb[1]) / 255, Number(rgb[2]) / 255, Number(rgb[3]) / 255];
+  const srgb = /^color(srgbs+([d.]+)s+([d.]+)s+([d.]+)/.exec(v);
+  if (srgb) return [Number(srgb[1]), Number(srgb[2]), Number(srgb[3])];
+  return [0.5, 0.5, 0.5];
 }
 
 export default function Shader() {
@@ -75,10 +79,13 @@ export default function Shader() {
     const uTime = gl.getUniformLocation(prog, "u_time");
     const uC = [1, 2, 3].map((i) => gl.getUniformLocation(prog, "u_c" + i));
 
+    const probe = document.createElement("i");
+    probe.style.cssText = "position:absolute;width:0;height:0;visibility:hidden;pointer-events:none";
+    document.body.appendChild(probe);
     const setColors = () => {
-      gl.uniform3fv(uC[0] ?? null, cssColor("--bg"));
-      gl.uniform3fv(uC[1] ?? null, cssColor("--bg-2"));
-      gl.uniform3fv(uC[2] ?? null, cssColor("--accent"));
+      gl.uniform3fv(uC[0] ?? null, cssColor(probe, "--bg"));
+      gl.uniform3fv(uC[1] ?? null, cssColor(probe, "--bg-2"));
+      gl.uniform3fv(uC[2] ?? null, cssColor(probe, "--accent"));
     };
     const resize = () => {
       const scale = 0.5;
@@ -161,6 +168,7 @@ export default function Shader() {
       onCalm.disconnect();
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("ride:theme", onTheme);
+      probe.remove();
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
   }, []);
