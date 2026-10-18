@@ -28,9 +28,9 @@ const VERT = `attribute vec2 a; void main(){ gl_Position = vec4(a, 0.0, 1.0); }`
 function cssColor(probe: HTMLElement, name: string): [number, number, number] {
   probe.style.backgroundColor = `var(${name})`;
   const v = getComputedStyle(probe).backgroundColor;
-  const rgb = /^rgba?(s*([d.]+)[,s]+([d.]+)[,s]+([d.]+)/.exec(v);
+  const rgb = /^rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)/.exec(v);
   if (rgb) return [Number(rgb[1]) / 255, Number(rgb[2]) / 255, Number(rgb[3]) / 255];
-  const srgb = /^color(srgbs+([d.]+)s+([d.]+)s+([d.]+)/.exec(v);
+  const srgb = /^color\(srgb\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)/.exec(v);
   if (srgb) return [Number(srgb[1]), Number(srgb[2]), Number(srgb[3])];
   return [0.5, 0.5, 0.5];
 }
