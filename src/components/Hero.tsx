@@ -3,6 +3,7 @@ import { person, stations } from "../content/ride";
 import { useStore } from "../lib/store";
 import { reducedMotion, useBrowserValue } from "../lib/hooks";
 import { ArrowDown, Ticket } from "./Icons";
+import Skyline from "./Skyline";
 
 const Shader = lazy(() => import("./Shader"));
 
@@ -87,6 +88,7 @@ export default function Hero() {
         </Suspense>
       )}
       <div className="hero__grain" aria-hidden="true" />
+      <Skyline variant="hero" />
       <div className="marquee" aria-hidden="true">
         <div className="marquee__track">
           {[...marquee, ...marquee].map((m, i) => (
@@ -100,7 +102,7 @@ export default function Hero() {
       <div className="wrap hero__inner">
         <div className="hero__copy">
           <p className="eyebrow hero__gate">
-            Gate 01 · departs on scroll · <span className="hero__pass">Admit one</span>
+            Main gate · four lands · <span className="hero__pass">Admit one</span>
           </p>
           <h1 id="hero-title" ref={titleRef} className="display hero__title">
             <span className="hero__line">Udit</span>

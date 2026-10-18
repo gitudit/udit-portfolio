@@ -2,19 +2,24 @@ import { Activity, lazy, Suspense, useEffect, useEffectEvent, useRef } from "rea
 import "./styles/tokens.css";
 import "./styles/app.css";
 import "./styles/details.css";
+import "./styles/park.css";
 import TopBar from "./components/TopBar";
+import Sky from "./components/Sky";
 import Hero from "./components/Hero";
 import Hud from "./components/Hud";
 import Line from "./components/Line";
+import Midway from "./components/Midway";
 import Terminus from "./components/Terminus";
 import Toasts from "./components/Toasts";
 import ErrorBoundary from "./components/ErrorBoundary";
-import { hydrateStore, useStore, openPalette, openTerminal, closeOverlays, unlock, setExpress } from "./lib/store";
+import { MiniMap } from "./components/MapGraphic";
+import { stations } from "./content/ride";
+import { hydrateStore, useStore, openPalette, openTerminal, openMap, closeOverlays, unlock, setExpress, setZone, type Zone } from "./lib/store";
 import { isTypingTarget } from "./lib/hooks";
 import { play } from "./lib/sound";
 import { burst } from "./lib/confetti";
 
-const HoodPanel = lazy(() => import("./components/HoodPanel"));
+const ParkMap = lazy(() => import("./components/ParkMap"));
 const CommandPalette = lazy(() => import("./components/CommandPalette"));
 const Terminal = lazy(() => import("./components/Terminal"));
 const CaseStudyDrawer = lazy(() => import("./components/CaseStudyDrawer"));
@@ -22,12 +27,14 @@ const CaseStudyDrawer = lazy(() => import("./components/CaseStudyDrawer"));
 const KONAMI = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"] as const;
 
 export default function App() {
-  const { hoodOpen, paletteOpen, terminalOpen, drawer, express } = useStore((s) => ({
-    hoodOpen: s.hoodOpen,
+  const { mapOpen, paletteOpen, terminalOpen, drawer, express, current, zone } = useStore((s) => ({
+    mapOpen: s.mapOpen,
     paletteOpen: s.paletteOpen,
     terminalOpen: s.terminalOpen,
     drawer: s.drawer,
     express: s.express,
+    current: s.current,
+    zone: s.zone,
   }));
   const konami = useRef<string[]>([]);
 
@@ -35,11 +42,11 @@ export default function App() {
     hydrateStore();
   }, []);
 
-  // Warm the overlay chunks (about 7 KB gzipped) once the browser is idle, so the first ⌘K is instant.
+  // Warm the overlay chunks (a few KB gzipped) once the browser is idle, so the first ⌘K is instant.
   useEffect(() => {
     const prefetch = () => {
       void import("./components/CommandPalette");
-      void import("./components/HoodPanel");
+      void import("./components/ParkMap");
       void import("./components/CaseStudyDrawer");
     };
     if ("requestIdleCallback" in window) {
@@ -49,6 +56,37 @@ export default function App() {
     const t = setTimeout(prefetch, 2500);
     return () => clearTimeout(t);
   }, []);
+
+  // Which zone of the park is at the centre of the viewport: drives the mini-map and the sky fallback.
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return undefined;
+    const targets: [string, Zone][] = [
+      ["line", "ride"],
+      ["midway", "midway"],
+      ["exit", "exit"],
+    ];
+    const els = targets.map(([id, z]) => [document.getElementById(id), z] as const).filter((x): x is readonly [HTMLElement, Zone] => x[0] !== null);
+    const active = new Set<Zone>();
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          const z = els.find(([el]) => el === e.target)?.[1];
+          if (!z) continue;
+          if (e.isIntersecting) active.add(z);
+          else active.delete(z);
+        }
+        setZone(active.has("exit") ? "exit" : active.has("midway") ? "midway" : active.has("ride") ? "ride" : "gate");
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 },
+    );
+    els.forEach(([el]) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  // The land under the car, as a root attribute: CSS hooks and the no-scroll-timeline sky fallback.
+  useEffect(() => {
+    document.documentElement.dataset.land = zone === "ride" ? (stations[current]?.land ?? "campus") : zone;
+  }, [zone, current]);
 
   // Global keys. An Effect Event always sees the latest open/closed state without re-subscribing.
   const onKey = useEffectEvent((e: KeyboardEvent) => {
@@ -70,6 +108,11 @@ export default function App() {
       play("pop");
       return;
     }
+    if (e.key.toLowerCase() === "m" && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      openMap(!mapOpen);
+      play("pop");
+      return;
+    }
     const k = konami.current;
     k.push(e.key.length === 1 ? e.key.toLowerCase() : e.key);
     if (k.length > KONAMI.length) k.shift();
@@ -88,12 +131,12 @@ export default function App() {
 
   // While a modal overlay is open the page behind it is inert: no focus, no clicks, no screen-reader
   // reach. The element that opened it gets focus back when the last modal closes.
-  const modal = hoodOpen || paletteOpen || drawer !== null;
+  const modal = mapOpen || paletteOpen || drawer !== null;
   const opener = useRef<HTMLElement | null>(null);
   useEffect(() => {
     if (!modal) return undefined;
     opener.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    const els = Array.from(document.querySelectorAll<HTMLElement>("#main, .topbar"));
+    const els = Array.from(document.querySelectorAll<HTMLElement>("#main, .topbar, .minimap"));
     for (const el of els) el.inert = true;
     return () => {
       for (const el of els) el.inert = false;
@@ -134,6 +177,7 @@ export default function App() {
       <a className="skip" href="#line">
         Skip to the ride
       </a>
+      <Sky />
       <TopBar />
       <main id="main">
         <Hero />
@@ -143,12 +187,16 @@ export default function App() {
           <Line />
         </Suspense>
         <Suspense fallback={null}>
+          <Midway />
+        </Suspense>
+        <Suspense fallback={null}>
           <Terminus />
         </Suspense>
       </main>
+      <MiniMap />
       <ErrorBoundary label="overlays">
         <Suspense fallback={null}>
-          {hoodOpen && <HoodPanel />}
+          {mapOpen && <ParkMap />}
           {paletteOpen && <CommandPalette />}
           {drawer && <CaseStudyDrawer id={drawer} />}
           {/* The terminal keeps its history between openings: hidden, not unmounted. */}

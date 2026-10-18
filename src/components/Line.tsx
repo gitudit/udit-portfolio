@@ -1,12 +1,15 @@
 import { useEffect, useRef } from "react";
-import { stations } from "../content/ride";
+import { lands, stations } from "../content/ride";
 import Station from "./Station";
+import LandGate from "./LandGate";
+import FastPass from "./FastPass";
 import { getState, setCurrent, stamp, unlock } from "../lib/store";
 import { play } from "../lib/sound";
 import { burst } from "../lib/confetti";
 
-// The Line: a vertical rail with a car pinned near the eye line. The rail lights up to the car
-// with a CSS scroll-driven animation; JS only tracks which station is at the car.
+// The Line: a vertical rail with a car pinned near the eye line, running through three lands with an
+// entrance gate each and a height check before the full-time rides. The rail lights up to the car with
+// a CSS scroll-driven animation; JS only tracks which station is at the car.
 export default function Line() {
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -67,14 +70,17 @@ export default function Line() {
     };
   }, []);
 
+  const rideLands = lands.filter((l) => l.stations.length > 0);
+  let index = 0;
+
   return (
     <section className="line" id="line" aria-labelledby="line-title">
       <div className="wrap line__intro">
-        <p className="eyebrow">The line · {stations.length} stops · one direction</p>
+        <p className="eyebrow">The line · 3 lands · {stations.length} stops · one direction</p>
         <h2 id="line-title" className="display line__title">
           Seven stops. <span className="line__soft">Every one of them shipped.</span>
         </h2>
-        <p className="muted line__sub">Scroll to ride. Stations stamp your ticket as the car passes. Tap the attraction at each stop.</p>
+        <p className="muted line__sub">Scroll to ride. Each land has its own sky, every station stamps your ticket, and there is a height check before the big coasters.</p>
       </div>
       <div className="wrap track" ref={trackRef}>
         <div className="track__rail" aria-hidden="true" />
@@ -84,11 +90,22 @@ export default function Line() {
             <span>US</span>
           </div>
         </div>
-        <ol className="stations">
-          {stations.map((s, i) => (
-            <Station key={s.id} station={s} index={i} total={stations.length} />
+        <div className="lands">
+          {rideLands.map((land) => (
+            <section key={land.id} className={`land land--${land.id}`} aria-label={`Land ${land.numeral}: ${land.name}`}>
+              {land.id === "thrill" && <FastPass />}
+              <LandGate land={land} />
+              <ol className="land__stations">
+                {land.stations.map((id) => {
+                  const station = stations.find((s) => s.id === id);
+                  if (!station) return null;
+                  const i = index++;
+                  return <Station key={id} station={station} index={i} total={stations.length} side={i % 2 === 0 ? "right" : "left"} />;
+                })}
+              </ol>
+            </section>
           ))}
-        </ol>
+        </div>
       </div>
     </section>
   );

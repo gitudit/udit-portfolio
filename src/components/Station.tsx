@@ -1,9 +1,9 @@
 import { lazy, Suspense, useEffect, useRef, useState, type ComponentType, type LazyExoticComponent } from "react";
-import type { AttractionName, Station as StationData } from "../content/ride";
+import { kindLabel, type AttractionName, type Station as StationData, type Thrill } from "../content/ride";
 import { useNear } from "../lib/hooks";
 import { useStore, openDrawer } from "../lib/store";
 import { play } from "../lib/sound";
-import { ArrowRight } from "./Icons";
+import { ArrowRight, Bolt } from "./Icons";
 import ErrorBoundary from "./ErrorBoundary";
 import type { AttractionProps } from "./attractions/types";
 
@@ -21,9 +21,20 @@ interface Props {
   station: StationData;
   index: number;
   total: number;
+  side: "left" | "right";
 }
 
-export default function Station({ station, index, total }: Props) {
+function ThrillMeter({ level }: { level: Thrill }) {
+  return (
+    <span className="thrill" role="img" aria-label={`Thrill level ${level} of 5`}>
+      {[1, 2, 3, 4, 5].map((i) => (
+        <Bolt key={i} className={i <= level ? "is-on" : undefined} />
+      ))}
+    </span>
+  );
+}
+
+export default function Station({ station, index, total, side }: Props) {
   const ref = useRef<HTMLLIElement>(null);
   const near = useNear(ref, "400px 0px");
   const { current, stamps } = useStore((s) => ({ current: s.current, stamps: s.stamps }));
@@ -50,7 +61,9 @@ export default function Station({ station, index, total }: Props) {
     return () => io.disconnect();
   }, []);
 
-  const cls = ["station", isCurrent ? "is-current" : "", isPassed ? "is-passed" : "", isStamped ? "is-stamped" : "", seen ? "is-seen" : ""].filter(Boolean).join(" ");
+  const cls = ["station", `station--${station.kind}`, `station--${side}`, isCurrent ? "is-current" : "", isPassed ? "is-passed" : "", isStamped ? "is-stamped" : "", seen ? "is-seen" : ""]
+    .filter(Boolean)
+    .join(" ");
   const skeleton = <div className="attraction__skeleton" aria-hidden="true" />;
 
   return (
@@ -65,6 +78,11 @@ export default function Station({ station, index, total }: Props) {
             {index === total - 1 ? " · You are here" : ""}
           </span>
           <span className="station__years mono">{station.years}</span>
+        </div>
+        <div className="station__badges">
+          <span className={`badge badge--${station.kind}`}>{kindLabel[station.kind]}</span>
+          <span className="badge badge--ride">{station.ride}</span>
+          <ThrillMeter level={station.thrill} />
         </div>
         <h3 className="display station__title">{station.title}</h3>
         <p className="station__role">

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
-import { person, stations } from "../content/ride";
-import { getState, openPalette, openHood, openTerminal, toggleSound, toggleCalm, setExpress, unlock } from "../lib/store";
+import { lands, person, stations } from "../content/ride";
+import { getState, openPalette, openMap, openTerminal, toggleSound, toggleCalm, setExpress, unlock } from "../lib/store";
 import { toggleTheme } from "../lib/theme";
 import { useDialogFocus } from "../lib/hooks";
 import { play, primeAudio } from "../lib/sound";
@@ -25,18 +25,20 @@ function buildActions(): Action[] {
       id: "go-" + s.id,
       group: "Board",
       label: `Board at ${s.name}`,
-      hint: s.years,
-      keys: `${s.name} ${s.title} ${s.place} ${s.year}`,
+      hint: `${s.years} · ${lands.find((l) => l.id === s.land)?.name ?? ""}`,
+      keys: `${s.name} ${s.title} ${s.place} ${s.year} ${s.land} ${s.kind}`,
       run: () => scrollToId("stop-" + s.id),
     })),
+    { id: "midway", group: "Midway", label: "The Carousel: skills", hint: "what I ride with", keys: "skills stack tools technologies", run: () => scrollToId("midway") },
+    { id: "projects", group: "Midway", label: "Side attractions: projects", hint: "open source", keys: "projects github code work", run: () => scrollToId("projects") },
+    { id: "map", group: "Park", label: "Open the park map", hint: "M", keys: "map lands where am i navigate", run: () => openMap(true) },
     { id: "resume", group: "Gift shop", label: "Boarding pass (résumé)", hint: "opens Drive", keys: "resume cv pdf", run: () => void window.open(person.resume, "_blank", "noopener") },
     { id: "email", group: "Gift shop", label: "Copy email", hint: person.email, keys: "mail contact", run: () => void navigator.clipboard?.writeText(person.email) },
     { id: "exit", group: "Gift shop", label: "Exit through the gift shop", hint: "contact", keys: "contact footer end", run: () => scrollToId("exit") },
-    { id: "hood", group: "Engine", label: "Open the hood", hint: "live vitals", keys: "performance vitals lighthouse", run: () => openHood(true) },
-    { id: "theme", group: "Ride", label: "Switch day / night", hint: "wipe", keys: "theme dark light", run: () => void toggleTheme(document.querySelector(".topbar .iconbtn")) },
+    { id: "theme", group: "Park", label: "Switch day / night", hint: "wipe", keys: "theme dark light", run: () => void toggleTheme(document.querySelector(".topbar .iconbtn")) },
     {
       id: "sound",
-      group: "Ride",
+      group: "Park",
       label: getState().sound ? "Sound off" : "Sound on",
       hint: "interface sounds",
       keys: "audio mute",
@@ -45,10 +47,10 @@ function buildActions(): Action[] {
         toggleSound();
       },
     },
-    { id: "calm", group: "Ride", label: getState().calm ? "Calm ride off" : "Calm ride on", hint: "reduce motion", keys: "motion reduce accessibility", run: () => void toggleCalm() },
+    { id: "calm", group: "Park", label: getState().calm ? "Calm ride off" : "Calm ride on", hint: "reduce motion", keys: "motion reduce accessibility", run: () => void toggleCalm() },
     {
       id: "express",
-      group: "Ride",
+      group: "Park",
       label: "Express pass",
       hint: "the ride drives itself",
       keys: "auto scroll konami",
@@ -58,9 +60,8 @@ function buildActions(): Action[] {
         setExpress(true);
       },
     },
-    { id: "terminal", group: "Engine", label: "Open terminal", hint: "~", keys: "cli shell", run: () => openTerminal(true) },
-    { id: "source", group: "Engine", label: "View source", hint: "GitHub", keys: "code repo", run: () => void window.open(person.source, "_blank", "noopener") },
-    { id: "top", group: "Ride", label: "Back to the gate", hint: "top", keys: "home start", run: () => window.scrollTo({ top: 0, behavior: "smooth" }) },
+    { id: "terminal", group: "Park", label: "Open terminal", hint: "~", keys: "cli shell", run: () => openTerminal(true) },
+    { id: "top", group: "Park", label: "Back to the gate", hint: "top", keys: "home start", run: () => window.scrollTo({ top: 0, behavior: "smooth" }) },
   ];
 }
 
@@ -117,7 +118,7 @@ export default function CommandPalette() {
               setIdx(0);
             }}
             onKeyDown={onKey}
-            placeholder="Board a station, switch theme, open the hood…"
+            placeholder="Board a station, open the map, switch theme…"
             aria-label="Search actions"
             aria-controls="palette-list"
             aria-activedescendant={actions[active] ? "palette-" + actions[active].id : undefined}
@@ -136,11 +137,12 @@ export default function CommandPalette() {
               <span className="palette__hint mono muted">{a.hint}</span>
             </li>
           ))}
-          {!actions.length && <li className="palette__empty muted">Nothing on this line. Try “board”, “hood” or “night”.</li>}
+          {!actions.length && <li className="palette__empty muted">Nothing on this line. Try “board”, “map” or “night”.</li>}
         </ul>
         <div className="palette__foot mono muted">
           <span>↑↓ move</span>
           <span>↵ run</span>
+          <span>M map</span>
           <span>~ terminal</span>
         </div>
       </div>

@@ -1,30 +1,40 @@
 import { useEffect, useState } from "react";
-import { stations } from "../content/ride";
+import { landOf, passLabel, stations } from "../content/ride";
 import { useStore } from "../lib/store";
 
-// The ticket: sticky under the top bar while the ride is on screen. Progress is driven by CSS
-// (named scroll timeline from the Line) with a JS fallback variable set by the Line.
-// It slides away at the terminus, where the ticket is "collected".
+// The ticket: sticky under the top bar while the ride is on screen. The pass upgrades from guest to
+// intern to all-access as the car moves through the lands, and the ticket is collected at the terminus.
 export default function Hud() {
   const { current, stamps } = useStore((s) => ({ current: s.current, stamps: s.stamps }));
   const [away, setAway] = useState(false);
   const st = stations[current] ?? stations[0];
 
   useEffect(() => {
-    const exit = document.getElementById("exit");
-    if (!exit || typeof IntersectionObserver === "undefined") return undefined;
-    const io = new IntersectionObserver(([e]) => setAway(!!e && e.isIntersecting), { rootMargin: "-25% 0px 0px 0px", threshold: 0 });
-    io.observe(exit);
+    if (typeof IntersectionObserver === "undefined") return undefined;
+    const targets = ["midway", "exit"].map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
+    const seen = new Set<Element>();
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) seen.add(e.target);
+          else seen.delete(e.target);
+        }
+        setAway(seen.size > 0);
+      },
+      { rootMargin: "-25% 0px 0px 0px", threshold: 0 },
+    );
+    targets.forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
 
   if (!st) return null;
+  const land = landOf(st.land);
   return (
-    <div className={"hud" + (away ? " hud--away" : "")} role="status" aria-live="polite" aria-atomic="true">
+    <div className={`hud hud--${st.kind}` + (away ? " hud--away" : "")} role="status" aria-live="polite" aria-atomic="true">
       <div className="wrap hud__ticket">
         <div className="hud__stub">
-          <span className="hud__admit">Admit one</span>
-          <span className="hud__ride">The Ride</span>
+          <span className="hud__admit">{passLabel[st.kind]}</span>
+          <span className="hud__ride">{land.name}</span>
         </div>
         <div className="hud__year display">{st.year}</div>
         <div className="hud__where">

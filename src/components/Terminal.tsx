@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
-import { person, stations, achievements } from "../content/ride";
-import { getState, openTerminal, openHood, toggleSound, toggleCalm, setExpress, unlock } from "../lib/store";
+import { person, stations, achievements, lands, skills, projects } from "../content/ride";
+import { getState, openTerminal, openMap, toggleSound, toggleCalm, setExpress, unlock } from "../lib/store";
 import { setTheme } from "../lib/theme";
 import { useDialogFocus } from "../lib/hooks";
 import { play, primeAudio } from "../lib/sound";
 import { burst } from "../lib/confetti";
 
-const COMMANDS = ["help", "whoami", "ls", "cat", "stamps", "achievements", "vitals", "theme", "sound", "calm", "express", "ride", "boarding", "clear", "exit"];
+const COMMANDS = ["help", "whoami", "lands", "ls", "cat", "skills", "projects", "map", "stamps", "achievements", "theme", "sound", "calm", "express", "ride", "boarding", "clear", "exit"];
 
 interface Line {
   t: "in" | "out";
@@ -44,6 +44,9 @@ export default function Terminal() {
       case "whoami":
         print(`${person.name} — ${person.tagline}`, `${person.location} · ${person.email}`);
         break;
+      case "lands":
+        print(...lands.map((l) => `${l.numeral.padEnd(4)} ${l.name.padEnd(16)} ${l.years}`));
+        break;
       case "ls":
         print(...stations.map((s, i) => `${String(i).padStart(2, "0")}  ${s.id.padEnd(9)} ${s.years.padEnd(22)} ${s.name}`));
         break;
@@ -57,6 +60,18 @@ export default function Terminal() {
         }
         break;
       }
+      case "skills": {
+        const groups = Array.from(new Set(skills.map((s) => s.group)));
+        print(...groups.map((g) => `${g.padEnd(9)} ${skills.filter((s) => s.group === g).map((s) => s.name).join(", ")}`));
+        break;
+      }
+      case "projects":
+        print(...projects.map((p) => `${p.name.padEnd(20)} ${p.blurb}`));
+        scrollToId("projects");
+        break;
+      case "map":
+        openMap(true);
+        break;
       case "stamps": {
         const st = getState().stamps;
         print(`${st.length}/${stations.length} stamped: ${st.join(", ") || "none yet"}`);
@@ -64,12 +79,9 @@ export default function Terminal() {
       }
       case "achievements": {
         const got = getState().achievements;
-        print(...achievements.map((a) => `${got.includes(a.id) ? "[x]" : "[ ]"} ${a.title.padEnd(16)} ${got.includes(a.id) ? a.desc : ""}`));
+        print(...achievements.map((a) => `${got.includes(a.id) ? "[x]" : "[ ]"} ${a.title.padEnd(18)} ${got.includes(a.id) ? a.desc : ""}`));
         break;
       }
-      case "vitals":
-        openHood(true);
-        break;
       case "theme": {
         const t = (args[0] ?? "").toLowerCase();
         if (t === "day" || t === "night") {

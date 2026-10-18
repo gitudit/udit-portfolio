@@ -1,0 +1,1075 @@
+/* The park: lands, their skies, the gates between them, the height check, the park map and the Midway. */
+
+@layer tokens {
+  :root {
+    --land-campus: #cfe3bf;
+    --land-campus-2: #f4e9b4;
+    --land-training: #f7dba9;
+    --land-training-2: #fbcdb0;
+    --land-thrill: #f2c2b2;
+    --land-thrill-2: #d6c3ea;
+    --land-midway: #d3d3f2;
+    --land-midway-2: #f6cfe2;
+    --land-exit: #e4e8df;
+    --land-ink-campus: #3f6b2f;
+    --land-ink-training: #9a5a12;
+    --land-ink-thrill: #a2341a;
+    --land-ink-midway: #4b3f9a;
+  }
+  :root[data-theme="night"] {
+    --land-campus: #0d2b25;
+    --land-campus-2: #1b3016;
+    --land-training: #2d1d0a;
+    --land-training-2: #3d1c0e;
+    --land-thrill: #2d1134;
+    --land-thrill-2: #13193d;
+    --land-midway: #0d1238;
+    --land-midway-2: #2c0f30;
+    --land-exit: #0f141d;
+    --land-ink-campus: #9fd48a;
+    --land-ink-training: #f3b86a;
+    --land-ink-thrill: #ff8a66;
+    --land-ink-midway: #b7acff;
+  }
+}
+
+@layer components {
+  /* Every named scroll timeline is declared at the root so the sky and the mini-map (outside <main>) can read them. */
+  #root {
+    timeline-scope: --ride, --land-campus, --land-training, --land-thrill, --land-midway, --land-exit;
+  }
+  .land--campus {
+    view-timeline: --land-campus block;
+  }
+  .land--training {
+    view-timeline: --land-training block;
+  }
+  .land--thrill {
+    view-timeline: --land-thrill block;
+  }
+  .midway {
+    view-timeline: --land-midway block;
+  }
+  .terminus {
+    view-timeline: --land-exit block;
+  }
+
+  /* ---------- Sky ---------- */
+  .sky {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .sky__layer {
+    position: absolute;
+    inset: -12%;
+    opacity: 0;
+    will-change: opacity;
+  }
+  .sky__layer--campus {
+    background:
+      radial-gradient(60% 55% at 16% 22%, var(--land-campus) 0%, transparent 70%),
+      radial-gradient(42% 40% at 86% 74%, var(--land-campus-2) 0%, transparent 70%);
+  }
+  .sky__layer--training {
+    background:
+      radial-gradient(62% 52% at 80% 20%, var(--land-training) 0%, transparent 70%),
+      radial-gradient(45% 40% at 14% 80%, var(--land-training-2) 0%, transparent 70%);
+  }
+  .sky__layer--thrill {
+    background:
+      linear-gradient(180deg, var(--land-thrill-2) 0%, transparent 60%),
+      radial-gradient(70% 55% at 30% 85%, var(--land-thrill) 0%, transparent 70%);
+  }
+  .sky__layer--midway {
+    background:
+      linear-gradient(180deg, var(--land-midway) 0%, transparent 55%),
+      radial-gradient(50% 45% at 78% 70%, var(--land-midway-2) 0%, transparent 70%);
+  }
+  .sky__layer--exit {
+    background: radial-gradient(70% 60% at 50% 100%, var(--land-exit) 0%, transparent 70%);
+  }
+  @supports (animation-timeline: view()) {
+    .sky__layer {
+      animation: sky-fade linear both;
+      animation-range: cover 0% cover 100%;
+    }
+    .sky__layer--campus {
+      animation-timeline: --land-campus;
+    }
+    .sky__layer--training {
+      animation-timeline: --land-training;
+    }
+    .sky__layer--thrill {
+      animation-timeline: --land-thrill;
+    }
+    .sky__layer--midway {
+      animation-timeline: --land-midway;
+    }
+    .sky__layer--exit {
+      animation-timeline: --land-exit;
+    }
+  }
+  @keyframes sky-fade {
+    0% {
+      opacity: 0;
+    }
+    18% {
+      opacity: 1;
+    }
+    82% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @supports not (animation-timeline: view()) {
+    .sky__layer {
+      transition: opacity 900ms var(--ease-ui);
+    }
+    :root[data-land="campus"] .sky__layer--campus,
+    :root[data-land="training"] .sky__layer--training,
+    :root[data-land="thrill"] .sky__layer--thrill,
+    :root[data-land="midway"] .sky__layer--midway,
+    :root[data-land="exit"] .sky__layer--exit {
+      opacity: 1;
+    }
+  }
+  .sky__stars {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background-image:
+      radial-gradient(1.2px 1.2px at 12% 18%, #fff 50%, transparent 55%),
+      radial-gradient(1px 1px at 48% 62%, #fff 50%, transparent 55%),
+      radial-gradient(1.4px 1.4px at 78% 30%, #fff 50%, transparent 55%),
+      radial-gradient(1px 1px at 30% 82%, #fff 50%, transparent 55%),
+      radial-gradient(1px 1px at 90% 78%, #fff 50%, transparent 55%),
+      radial-gradient(1.3px 1.3px at 64% 12%, #fff 50%, transparent 55%);
+    background-size:
+      420px 300px,
+      560px 380px,
+      700px 520px,
+      480px 340px,
+      640px 460px,
+      820px 600px;
+    transition: opacity 900ms var(--ease-ui);
+  }
+  :root[data-theme="night"] .sky__stars {
+    opacity: 0.55;
+    animation: twinkle 7s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle {
+    from {
+      opacity: 0.35;
+    }
+    to {
+      opacity: 0.7;
+    }
+  }
+  .sky__bokeh {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background-image:
+      radial-gradient(26px 26px at 10% 70%, color-mix(in srgb, var(--accent) 22%, transparent) 60%, transparent 62%),
+      radial-gradient(18px 18px at 70% 28%, color-mix(in srgb, var(--land-ink-midway) 20%, transparent) 60%, transparent 62%),
+      radial-gradient(34px 34px at 86% 64%, color-mix(in srgb, var(--accent-2) 18%, transparent) 60%, transparent 62%),
+      radial-gradient(14px 14px at 36% 20%, color-mix(in srgb, var(--land-ink-midway) 26%, transparent) 60%, transparent 62%),
+      radial-gradient(22px 22px at 54% 86%, color-mix(in srgb, var(--accent) 16%, transparent) 60%, transparent 62%);
+    background-size: 900px 700px;
+  }
+  @supports (animation-timeline: view()) {
+    .sky__bokeh {
+      animation: sky-fade linear both;
+      animation-timeline: --land-midway;
+      animation-range: cover 0% cover 100%;
+    }
+  }
+  :root[data-theme="night"] .sky__bokeh {
+    display: none;
+  }
+
+  /* ---------- Skyline silhouettes ---------- */
+  .skyline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    pointer-events: none;
+    color: var(--ink);
+    opacity: 0.1;
+  }
+  .skyline--hero {
+    bottom: 0;
+    height: clamp(90px, 16vw, 200px);
+    z-index: 0;
+  }
+  .skyline--midway {
+    top: 0;
+    height: clamp(80px, 14vw, 180px);
+    opacity: 0.08;
+  }
+  .skyline__lights {
+    opacity: 0;
+  }
+  :root[data-theme="night"] .skyline {
+    opacity: 0.35;
+  }
+  :root[data-theme="night"] .skyline__lights {
+    opacity: 1;
+    color: var(--accent);
+    animation: lights 2.4s steps(2) infinite;
+  }
+  @keyframes lights {
+    50% {
+      opacity: 0.35;
+    }
+  }
+  .hero__inner {
+    z-index: 1;
+  }
+
+  /* ---------- Lands on the line ---------- */
+  .lands {
+    display: grid;
+    gap: clamp(60px, 10vh, 120px);
+  }
+  .land {
+    position: relative;
+  }
+  .land__stations {
+    margin-top: clamp(70px, 12vh, 130px);
+  }
+  .land--thrill::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 14px;
+    width: 3px;
+    border-radius: 3px;
+    box-shadow: 0 0 28px 6px var(--glow);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* ---------- Gates ---------- */
+  .gate {
+    position: relative;
+    padding: 10px 0 0 44px;
+  }
+  .gate__pennants {
+    display: flex;
+    gap: 7px;
+    padding-top: 3px;
+    border-top: 2px solid var(--rail);
+    width: min(100%, 420px);
+  }
+  .gate__pennants i {
+    width: 18px;
+    height: 22px;
+    background: var(--accent);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+  }
+  .gate__pennants i:nth-child(even) {
+    background: var(--ink);
+  }
+  .gate__pennants i:nth-child(3n) {
+    background: var(--land-ink, var(--accent-2));
+  }
+  .gate--campus {
+    --land-ink: var(--land-ink-campus);
+  }
+  .gate--training {
+    --land-ink: var(--land-ink-training);
+  }
+  .gate--thrill {
+    --land-ink: var(--land-ink-thrill);
+  }
+  .gate--midway {
+    --land-ink: var(--land-ink-midway);
+  }
+  .gate__arch {
+    position: relative;
+    display: grid;
+    gap: 8px;
+    margin-top: 16px;
+    padding: clamp(18px, 3vw, 28px) clamp(18px, 3.4vw, 34px) 18px;
+    background: var(--surface);
+    border: 2px solid var(--land-ink, var(--rule));
+    border-radius: 28px 28px 14px 14px;
+    box-shadow: var(--shadow);
+    max-width: 640px;
+  }
+  .gate__arch::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px dashed color-mix(in srgb, var(--land-ink, var(--ink)) 35%, transparent);
+    border-radius: 22px 22px 10px 10px;
+    pointer-events: none;
+  }
+  .gate__eyebrow {
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--land-ink, var(--accent-text));
+  }
+  .gate__name {
+    font-size: clamp(2rem, 5.6vw, 3.6rem);
+    line-height: 0.95;
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+  }
+  .gate__tag {
+    color: var(--ink-2);
+    max-width: 52ch;
+  }
+  .gate__height {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-top: 4px;
+  }
+  .gate__lights {
+    height: 8px;
+    margin-top: 16px;
+    width: min(100%, 640px);
+    background: radial-gradient(circle at 4px 4px, var(--land-ink, var(--accent)) 2px, transparent 2.6px) 0 0 / 18px 8px repeat-x;
+    opacity: 0.7;
+  }
+  :root[data-theme="night"] .gate__lights {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px var(--land-ink, var(--accent)));
+    animation: chase 1.6s steps(2) infinite;
+  }
+  @keyframes chase {
+    50% {
+      background-position: 9px 0;
+    }
+  }
+  @supports (animation-timeline: view()) {
+    .gate__arch {
+      animation: gate-in linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 60%;
+    }
+  }
+  @keyframes gate-in {
+    from {
+      opacity: 0;
+      transform: translateY(28px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ---------- Fast pass: the height check ---------- */
+  .fastpass {
+    position: relative;
+    margin: 0 0 clamp(60px, 10vh, 110px) 44px;
+    padding: clamp(20px, 3.4vw, 34px);
+    border-radius: 18px;
+    background: var(--ink);
+    color: var(--bg);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .fastpass__lines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, transparent 0 46px, color-mix(in srgb, var(--bg) 10%, transparent) 46px 48px);
+    opacity: 0.8;
+    animation: speed 0.9s linear infinite;
+    z-index: -1;
+  }
+  @keyframes speed {
+    to {
+      background-position: -48px 0;
+    }
+  }
+  .fastpass__board {
+    display: grid;
+    gap: 8px;
+    max-width: 48ch;
+  }
+  .fastpass__eyebrow {
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+  }
+  .fastpass__title {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 0.95;
+  }
+  .fastpass__sub {
+    color: color-mix(in srgb, var(--bg) 78%, transparent);
+  }
+  .fastpass__stamp {
+    position: absolute;
+    right: clamp(14px, 4vw, 40px);
+    top: 50%;
+    display: grid;
+    text-align: center;
+    padding: 10px 16px;
+    border: 3px solid var(--accent);
+    border-radius: 10px;
+    color: var(--accent);
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    line-height: 0.9;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-variation-settings: "opsz" 144, "SOFT" 0, "wght" 700;
+    transform: translateY(-50%) rotate(-12deg) scale(2.2);
+    opacity: 0;
+    transition: transform 560ms cubic-bezier(0.2, 1.5, 0.3, 1), opacity 260ms ease-out;
+  }
+  .fastpass.is-on .fastpass__stamp {
+    transform: translateY(-50%) rotate(-12deg) scale(1);
+    opacity: 1;
+  }
+  @media (max-width: 719px) {
+    .fastpass__stamp {
+      position: static;
+      transform: rotate(-6deg) scale(1);
+      justify-self: start;
+      margin-top: 10px;
+      width: max-content;
+    }
+    .fastpass.is-on .fastpass__stamp {
+      transform: rotate(-6deg) scale(1);
+    }
+  }
+
+  /* ---------- Station ride cards ---------- */
+  .station__badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 9px;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+    font: 600 0.6rem/1 var(--mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .badge--campus {
+    background: var(--land-campus);
+    border-color: transparent;
+    color: var(--ink);
+  }
+  .badge--intern {
+    background: var(--land-training);
+    border-color: transparent;
+    color: var(--ink);
+  }
+  .badge--fulltime {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+  }
+  .thrill {
+    display: inline-flex;
+    gap: 2px;
+    margin-left: auto;
+    color: var(--rail);
+  }
+  .thrill svg.is-on {
+    color: var(--accent);
+    filter: drop-shadow(0 0 4px var(--glow));
+  }
+  .station--intern .station__title {
+    font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+  }
+  .station--fulltime .station__title {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+  }
+  .station--fulltime .station__card {
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--rule));
+    box-shadow:
+      0 30px 70px -40px var(--glow),
+      var(--shadow);
+  }
+  .station--fulltime.is-current .station__card {
+    box-shadow:
+      0 0 0 1px var(--accent),
+      0 40px 80px -40px var(--glow),
+      var(--shadow);
+  }
+
+  @media (min-width: 900px) {
+    .gate {
+      padding-left: 0;
+      display: grid;
+      justify-items: center;
+      text-align: center;
+    }
+    .gate__arch {
+      padding-inline: clamp(30px, 4vw, 54px);
+      justify-items: center;
+    }
+    .gate__height {
+      justify-content: center;
+    }
+    .land--thrill::before {
+      left: 50%;
+      margin-left: -1.5px;
+    }
+    .fastpass {
+      margin-left: 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+    }
+    .fastpass__stamp {
+      position: static;
+      transform: rotate(-12deg) scale(2.2);
+    }
+    .fastpass.is-on .fastpass__stamp {
+      transform: rotate(-12deg) scale(1);
+    }
+  }
+
+  /* ---------- Park map ---------- */
+  .map {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .map__land {
+    fill: var(--land-campus);
+    opacity: 0.95;
+  }
+  .map__land--training {
+    fill: var(--land-training);
+  }
+  .map__land--thrill {
+    fill: var(--land-thrill);
+  }
+  .map__land--midway {
+    fill: var(--land-midway);
+  }
+  .map__landname {
+    font: 600 11px var(--mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    fill: var(--ink-2);
+  }
+  .map__track {
+    fill: none;
+    stroke: var(--rail);
+    stroke-width: 3;
+    stroke-dasharray: 0.012 0.012;
+    stroke-linecap: round;
+  }
+  .map__lit {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 3;
+    stroke-linecap: round;
+    transition: stroke-dasharray 700ms var(--ease-scene);
+  }
+  /* The same path as mapData.ts; pins and the car ride along it with CSS motion paths. */
+  .map__pin,
+  .map__you {
+    offset-path: path("M 40 300 C 100 300, 110 235, 160 232 S 250 270, 300 240 S 380 150, 440 160 S 520 110, 580 110 S 660 150, 700 120 S 740 70, 770 70");
+    offset-rotate: 0deg;
+    transition: offset-distance 700ms var(--ease-scene);
+  }
+  .map__pinring {
+    fill: var(--surface);
+    stroke: var(--rail);
+    stroke-width: 2;
+  }
+  .map__pindot {
+    fill: var(--rail);
+  }
+  .map__pin.is-passed .map__pinring {
+    stroke: var(--accent);
+  }
+  .map__pin.is-passed .map__pindot {
+    fill: var(--accent);
+  }
+  .map--full .map__pin {
+    cursor: pointer;
+    outline: none;
+  }
+  .map--full .map__pin:hover .map__pinring,
+  .map--full .map__pin:focus-visible .map__pinring {
+    stroke: var(--ink);
+    stroke-width: 3;
+  }
+  .map__pinlabel {
+    font: 600 12px var(--body);
+    fill: var(--ink);
+  }
+  .map__pinsub {
+    font: 500 10px var(--mono);
+    fill: var(--ink-2);
+  }
+  .map__youring {
+    fill: color-mix(in srgb, var(--accent) 22%, transparent);
+    animation: pulse 2s ease-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  .map__youdot {
+    fill: var(--accent);
+  }
+  .map__youtext {
+    font: 700 8px var(--mono);
+    fill: var(--accent-ink);
+  }
+  .map--full .map__youtext {
+    font-size: 10px;
+  }
+  @keyframes pulse {
+    0% {
+      transform: scale(0.7);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+
+  .minimap {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 35;
+    display: none;
+    width: 250px;
+    padding: 10px 12px 9px;
+    border-radius: 14px;
+    background: var(--ticket);
+    color: var(--ticket-ink);
+    border: 1px solid var(--rule);
+    box-shadow: var(--shadow);
+    text-align: left;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 400ms var(--ease-ui), transform 400ms var(--ease-ui), border-color var(--dur-fast);
+    pointer-events: none;
+  }
+  .minimap.is-on {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .minimap:hover {
+    border-color: var(--ink);
+  }
+  .minimap__row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .minimap__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--glow);
+  }
+  .minimap__kbd {
+    margin-left: auto;
+  }
+  @media (min-width: 900px) {
+    .minimap {
+      display: block;
+    }
+  }
+
+  .parkmap {
+    width: min(880px, 100%);
+    max-height: calc(100svh - 2 * var(--gutter));
+    overflow: auto;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+    animation: rise var(--dur-base) var(--ease-ui);
+    overscroll-behavior: contain;
+  }
+  .parkmap__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .parkmap__title {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin-top: 6px;
+  }
+  .parkmap__board {
+    padding: 14px 10px 6px;
+    border: 1px dashed var(--rule);
+    border-radius: 12px;
+    background: var(--bg);
+  }
+  .parkmap__legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .parkmap__land {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    grid-template-areas: "swatch name" "swatch years";
+    column-gap: 10px;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    font-size: 0.86rem;
+  }
+  .parkmap__land i {
+    grid-area: swatch;
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    background: var(--land-campus);
+  }
+  .parkmap__land--training i {
+    background: var(--land-training);
+  }
+  .parkmap__land--thrill i {
+    background: var(--land-thrill);
+  }
+  .parkmap__land--midway i {
+    background: var(--land-midway);
+  }
+  .parkmap__land b {
+    grid-area: name;
+  }
+  .parkmap__land span {
+    grid-area: years;
+    font-size: 0.66rem;
+  }
+  .parkmap__hint {
+    margin-top: 12px;
+    font-size: 0.66rem;
+  }
+
+  /* ---------- The Midway ---------- */
+  .midway {
+    position: relative;
+    padding-top: clamp(90px, 16vw, 200px);
+    border-top: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .midway .gate {
+    padding-left: 0;
+    margin-bottom: 36px;
+  }
+  .booth {
+    position: relative;
+    margin-top: 28px;
+    padding: clamp(18px, 3vw, 32px);
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .booth__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin-bottom: 20px;
+  }
+  .booth__title {
+    font-size: clamp(1.7rem, 3.8vw, 2.6rem);
+    margin-top: 8px;
+  }
+  .booth__sub {
+    max-width: 40ch;
+  }
+
+  .carousel {
+    --r: 470px;
+    outline-offset: 6px;
+    border-radius: 12px;
+    touch-action: pan-y;
+    user-select: none;
+    cursor: grab;
+  }
+  .carousel.is-dragging {
+    cursor: grabbing;
+  }
+  .carousel__stage {
+    height: 330px;
+    perspective: 1200px;
+    perspective-origin: 50% 40%;
+    overflow: hidden;
+    border-radius: 12px;
+    background: radial-gradient(60% 70% at 50% 100%, color-mix(in srgb, var(--land-midway) 70%, transparent) 0%, transparent 70%);
+  }
+  .carousel__ring {
+    position: relative;
+    width: 150px;
+    height: 176px;
+    margin: 56px auto 0;
+    transform-style: preserve-3d;
+    transform: rotateX(-7deg) rotateY(var(--drag, 0deg));
+    animation: carousel-spin 48s linear infinite;
+  }
+  .carousel.is-dragging .carousel__ring,
+  .carousel:hover .carousel__ring,
+  .carousel:focus-within .carousel__ring {
+    animation-play-state: paused;
+  }
+  @keyframes carousel-spin {
+    to {
+      transform: rotateX(-7deg) rotateY(calc(var(--drag, 0deg) - 360deg));
+    }
+  }
+  .carousel__card {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 6px;
+    padding: 14px;
+    text-align: center;
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    transform: rotateY(calc(var(--i) * (360deg / var(--n)))) translateZ(var(--r));
+    backface-visibility: hidden;
+  }
+  .carousel__icon {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    background: var(--bg);
+    color: var(--ink);
+  }
+  .carousel__mono {
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+  }
+  .carousel__card b {
+    font-size: 0.92rem;
+    line-height: 1.2;
+  }
+  .carousel__group {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+  .carousel__hint {
+    text-align: center;
+    font-size: 0.64rem;
+    margin-top: 10px;
+  }
+  @media (max-width: 719px) {
+    .carousel {
+      --r: 300px;
+    }
+    .carousel__stage {
+      height: 290px;
+    }
+    .carousel__ring {
+      width: 118px;
+      height: 160px;
+      margin-top: 50px;
+    }
+  }
+  /* Flat grid when motion is off: every skill readable, nothing spinning. */
+  @media (prefers-reduced-motion: reduce) {
+    .carousel__stage {
+      height: auto;
+      perspective: none;
+      background: none;
+    }
+    .carousel__ring {
+      width: auto;
+      height: auto;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+      transform: none;
+      animation: none;
+    }
+    .carousel__card {
+      position: static;
+      transform: none;
+    }
+    .carousel__hint {
+      display: none;
+    }
+  }
+  :root[data-calm="1"] .carousel__stage {
+    height: auto;
+    perspective: none;
+    background: none;
+  }
+  :root[data-calm="1"] .carousel__ring {
+    width: auto;
+    height: auto;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    transform: none;
+    animation: none;
+  }
+  :root[data-calm="1"] .carousel__card {
+    position: static;
+    transform: none;
+  }
+  :root[data-calm="1"] .carousel__hint {
+    display: none;
+  }
+
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 8px;
+  }
+  .skills__item {
+    display: grid;
+    gap: 2px;
+    padding: 10px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    background: var(--bg);
+    font-size: 0.9rem;
+  }
+  .skills__item .mono {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .chip {
+    padding: 7px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--rule);
+    background: var(--bg);
+    font-size: 0.82rem;
+  }
+
+  .posters {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+  }
+  .poster {
+    position: relative;
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 14px;
+    padding: 14px;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    transition: transform var(--dur-base) var(--ease-ui), border-color var(--dur-base), box-shadow var(--dur-base);
+  }
+  .poster:hover {
+    transform: translateY(-4px) rotate(-0.6deg);
+    border-color: var(--ink);
+    box-shadow: var(--shadow);
+  }
+  .poster__thumb {
+    width: 72px;
+    height: 72px;
+    border-radius: 10px;
+    object-fit: cover;
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+  }
+  .poster__body {
+    display: grid;
+    gap: 4px;
+    align-content: start;
+    min-width: 0;
+  }
+  .poster__tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+  .poster__name {
+    font-size: 1.3rem;
+    line-height: 1.05;
+  }
+  .poster__blurb {
+    font-size: 0.9rem;
+    color: var(--ink-2);
+  }
+  .poster__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .poster__link:hover {
+    color: var(--accent-text);
+  }
+  @supports (animation-timeline: view()) {
+    .poster {
+      animation: arrive linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 50%;
+    }
+  }
+
+  /* The HUD pass changes colour with the land. */
+  .hud--fulltime .hud__ticket {
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--rule));
+  }
+  .hud--fulltime .hud__admit {
+    color: var(--accent-text);
+  }
+}

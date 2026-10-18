@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { person, stations, achievements } from "../content/ride";
-import { useStore, openHood, unlock } from "../lib/store";
+import { useStore, openMap, unlock } from "../lib/store";
 import { play } from "../lib/sound";
 import ContactForm from "./ContactForm";
-import { BrandIcon, Mail, Ticket, Gauge } from "./Icons";
+import { BrandIcon, Mail, Ticket, MapIcon } from "./Icons";
 
 export default function Terminus() {
   const { stamps, unlocked } = useStore((s) => ({ stamps: s.stamps, unlocked: s.achievements }));
@@ -46,7 +46,7 @@ export default function Terminus() {
         <h2 id="exit-title" className="display terminus__title">
           Thanks for riding.
         </h2>
-        <p className="muted terminus__sub">Seven stops, five years, one line. If you are hiring for a frontend engineer who treats speed and polish as the same job, the gift shop is open.</p>
+        <p className="muted terminus__sub">Four lands, seven stops, one line. If you are hiring for a frontend engineer who treats speed and polish as the same job, the gift shop is open.</p>
 
         <div className="terminus__grid">
           <div className="giftshop">
@@ -113,20 +113,16 @@ export default function Terminus() {
               type="button"
               className="btn btn--ghost"
               onClick={() => {
-                openHood(true);
+                openMap(true);
                 play("pop");
               }}
             >
-              <Gauge /> Open the hood
+              <MapIcon /> Park map
             </button>
-            <a className="btn btn--ghost" href={person.source} target="_blank" rel="noreferrer noopener">
-              View source
+            <a className="btn btn--ghost" href="#top">
+              Back to the gate
             </a>
           </div>
-          <p className="muted footer__built">
-            Built with React 19.3 and the React Compiler in strict TypeScript, bundled by Vite 8 and pre-rendered at build time. Animated with CSS scroll-driven animations, the View Transitions API and one 3 KB shader. No animation
-            libraries, no trackers before load.
-          </p>
           <p className="mono muted">
             © {new Date().getFullYear()} Udit Singh · {person.location}
           </p>

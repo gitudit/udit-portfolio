@@ -9,6 +9,9 @@ export interface Toast {
   desc: string;
 }
 
+/** Which part of the park is at the centre of the viewport. */
+export type Zone = "gate" | "ride" | "midway" | "exit";
+
 export interface RideState {
   sound: boolean;
   calm: boolean;
@@ -17,13 +20,14 @@ export interface RideState {
   /** Achievement ids unlocked. */
   achievements: AchievementId[];
   toasts: Toast[];
-  hoodOpen: boolean;
+  mapOpen: boolean;
   paletteOpen: boolean;
   terminalOpen: boolean;
   /** Case study open in the drawer. */
   drawer: CaseStudyId | null;
   /** Station index at the car. */
   current: number;
+  zone: Zone;
   /** Konami / express auto-ride. */
   express: boolean;
   hydrated: boolean;
@@ -38,11 +42,12 @@ const initial: RideState = {
   stamps: [],
   achievements: [],
   toasts: [],
-  hoodOpen: false,
+  mapOpen: false,
   paletteOpen: false,
   terminalOpen: false,
   drawer: null,
   current: 0,
+  zone: "gate",
   express: false,
   hydrated: false,
 };
@@ -130,7 +135,8 @@ export function useStore<T>(selector: (s: RideState) => T, isEqual: (a: T, b: T)
 let toastSeq = 0;
 export function toast(title: string, desc: string): void {
   const id = ++toastSeq;
-  setState((s) => ({ toasts: [...s.toasts, { id, title, desc }] }));
+  // At most two on screen: the oldest makes room, so a burst of achievements never buries the page.
+  setState((s) => ({ toasts: [...s.toasts.slice(-1), { id, title, desc }] }));
   setTimeout(() => dismissToast(id), 4200);
 }
 export function dismissToast(id: number): void {
@@ -176,9 +182,9 @@ export function toggleCalm(): boolean {
   return calm;
 }
 
-export function openHood(open = true): void {
-  setState({ hoodOpen: open, paletteOpen: false, terminalOpen: false });
-  if (open) unlock("hood");
+export function openMap(open = true): void {
+  setState({ mapOpen: open, paletteOpen: false, terminalOpen: false });
+  if (open) unlock("map");
 }
 export function openPalette(open = true): void {
   setState({ paletteOpen: open, terminalOpen: false });
@@ -191,10 +197,13 @@ export function openDrawer(id: CaseStudyId | null): void {
   setState({ drawer: id, paletteOpen: false, terminalOpen: false });
 }
 export function closeOverlays(): void {
-  setState({ hoodOpen: false, paletteOpen: false, terminalOpen: false, drawer: null });
+  setState({ mapOpen: false, paletteOpen: false, terminalOpen: false, drawer: null });
 }
 export function setCurrent(index: number): void {
   if (state.current !== index) setState({ current: index });
+}
+export function setZone(zone: Zone): void {
+  if (state.zone !== zone) setState({ zone });
 }
 export function setExpress(on: boolean): void {
   setState({ express: on });

@@ -1,10 +1,19 @@
 // All content for The Ride. Edit here; components read from it.
+import playodyssey from "../assets/images/projects/playodyssey.webp";
+import wheels from "../assets/images/projects/wheels.webp";
+import tabletime from "../assets/images/projects/tabletime.webp";
+import drone from "../assets/images/projects/drone.webp";
+import kassandra from "../assets/images/projects/kassandra.webp";
+import bourbaki from "../assets/images/projects/bourbaki.webp";
 
 export type StationId = "gwalior" | "byjus" | "altair" | "scaler" | "cerebry" | "cars24" | "leena";
+export type LandId = "campus" | "training" | "thrill" | "midway";
+export type StationKind = "campus" | "intern" | "fulltime";
 export type AttractionName = "TrophyShelf" | "SlideDeck" | "CacheSwitch" | "LatencyGauge" | "CaptionStrip" | "BundleScene" | "PlatformPanel";
 export type CaseStudyId = "onboarding-engine" | "cars24-design-system" | "security-hardening";
-export type AchievementId = "boarded" | "all-stops" | "night-rider" | "hood" | "terminal" | "calm" | "gift-shop" | "konami";
+export type AchievementId = "boarded" | "fastpass" | "all-stops" | "night-rider" | "map" | "terminal" | "calm" | "midway" | "gift-shop" | "konami";
 export type SocialId = "github" | "linkedin" | "kaggle" | "hackerrank";
+export type Thrill = 1 | 2 | 3 | 4 | 5;
 
 export interface Social {
   id: SocialId;
@@ -30,8 +39,21 @@ export interface Fact {
   t: string;
 }
 
+export interface Land {
+  id: LandId;
+  numeral: string;
+  name: string;
+  years: string;
+  tagline: string;
+  /** The "height requirement" sign at the gate. */
+  height: string;
+  stations: readonly StationId[];
+}
+
 export interface Station {
   id: StationId;
+  land: LandId;
+  kind: StationKind;
   stop: number;
   year: string;
   years: string;
@@ -43,6 +65,9 @@ export interface Station {
   place: string;
   story: string;
   facts: readonly Fact[];
+  /** Ride-type sign on the card, e.g. "Junior coaster". */
+  ride: string;
+  thrill: Thrill;
   attraction: AttractionName;
   caseStudy?: CaseStudyId;
   sign: string;
@@ -64,11 +89,47 @@ export interface Achievement {
   desc: string;
 }
 
+export type SkillGroup = "Frontend" | "Backend" | "Data" | "Cloud" | "Tools";
+export type SkillIconId =
+  | "typescript"
+  | "javascript"
+  | "react"
+  | "nodedotjs"
+  | "sass"
+  | "html5"
+  | "css"
+  | "mongodb"
+  | "postgresql"
+  | "redis"
+  | "amazonwebservices"
+  | "firebase"
+  | "python"
+  | "rubyonrails"
+  | "git"
+  | "vite"
+  | "zoom";
+
+export interface Skill {
+  id: string;
+  name: string;
+  group: SkillGroup;
+  icon?: SkillIconId;
+}
+
+export interface Project {
+  id: string;
+  name: string;
+  tag: string;
+  blurb: string;
+  repo: string;
+  image: string;
+}
+
 export const person: Person = {
   name: "Udit Singh",
   role: "Frontend engineer",
   tagline: "Frontend engineer who makes interfaces feel fast.",
-  boarding: "Now boarding: a seven-stop ride through five years of shipping.",
+  boarding: "Now boarding: four lands, seven stops, five years of shipping.",
   location: "Gurugram, India",
   email: "uditsingh294@gmail.com",
   resume: "https://drive.google.com/file/d/1kL5-REwkZzt-0l-7uUTDWoYrV7cj0_Ui/view?usp=sharing",
@@ -81,10 +142,52 @@ export const person: Person = {
   ],
 };
 
+// The park is four lands. The ride runs through the first three; the Midway is where you get off and play.
+export const lands: readonly Land[] = [
+  {
+    id: "campus",
+    numeral: "I",
+    name: "Campus Grounds",
+    years: "2018 – 2023",
+    tagline: "Where the building habit started: a robot that won, a hackathon that won, a patent that stuck.",
+    height: "Curiosity",
+    stations: ["gwalior"],
+  },
+  {
+    id: "training",
+    numeral: "II",
+    name: "Training Track",
+    years: "2021 – 2023 · internships",
+    tagline: "Three junior coasters with real riders. Learning to ship with other people's code on the line.",
+    height: "A student ID",
+    stations: ["byjus", "altair", "scaler"],
+  },
+  {
+    id: "thrill",
+    numeral: "III",
+    name: "Thrill Zone",
+    years: "2023 – now · full-time",
+    tagline: "Hypercoasters. Millions of riders. The ride gets faster from here and never trades speed for polish.",
+    height: "A full-time badge",
+    stations: ["cerebry", "cars24", "leena"],
+  },
+  {
+    id: "midway",
+    numeral: "IV",
+    name: "The Midway",
+    years: "always open",
+    tagline: "Step right up: the toolkit I ride with, and the side attractions built for fun.",
+    height: "None",
+    stations: [],
+  },
+];
+
 // Stations in ride order (oldest first). `attraction` names the lazy vignette component.
 export const stations: readonly Station[] = [
   {
     id: "gwalior",
+    land: "campus",
+    kind: "campus",
     stop: 0,
     year: "2018",
     years: "2018 – 2023",
@@ -101,18 +204,22 @@ export const stations: readonly Station[] = [
       { n: "306", t: "global rank, CodeChef Long Challenge" },
       { n: "1", t: "patent: aiding during medical emergency" },
     ],
+    ride: "Dark ride · five years long",
+    thrill: 2,
     attraction: "TrophyShelf",
     sign: "Height requirement: curiosity.",
   },
   {
     id: "byjus",
+    land: "training",
+    kind: "intern",
     stop: 1,
     year: "2021",
     years: "Nov 2021 – Mar 2022",
     label: "Stop 1",
     name: "BYJU'S",
     title: "First build",
-    role: "Software Engineer",
+    role: "Software Engineer Intern",
     org: "BYJU'S, Bengaluru",
     place: "Bengaluru",
     story:
@@ -121,18 +228,22 @@ export const stations: readonly Station[] = [
       { n: "40%", t: "less overhead after dropping reveal.js" },
       { n: "30%", t: "faster development with shared components" },
     ],
+    ride: "Junior coaster",
+    thrill: 2,
     attraction: "SlideDeck",
     sign: "Please keep arrows inside the deck.",
   },
   {
     id: "altair",
+    land: "training",
+    kind: "intern",
     stop: 2,
     year: "2022",
     years: "May – Dec 2022",
     label: "Stop 2",
     name: "Altair",
     title: "Heavy machinery",
-    role: "Software Development Engineer",
+    role: "Software Development Engineer Intern",
     org: "Altair, Bengaluru",
     place: "Bengaluru",
     story:
@@ -141,18 +252,22 @@ export const stations: readonly Station[] = [
       { n: "50%", t: "faster data retrieval with caching" },
       { n: "25%", t: "improvement in key performance metrics" },
     ],
+    ride: "Spinning coaster",
+    thrill: 3,
     attraction: "CacheSwitch",
     sign: "Flip the switch. Watch the waterfall.",
   },
   {
     id: "scaler",
+    land: "training",
+    kind: "intern",
     stop: 3,
     year: "2023",
     years: "Jan – Jul 2023",
     label: "Stop 3",
     name: "Scaler",
     title: "The backend detour",
-    role: "Software Development Engineer",
+    role: "Software Development Engineer Intern",
     org: "Scaler, Bengaluru",
     place: "Bengaluru",
     story:
@@ -161,11 +276,15 @@ export const stations: readonly Station[] = [
       { n: "40%", t: "lower API response time" },
       { n: "500", t: "new viva bookings in a week" },
     ],
+    ride: "Wild mouse",
+    thrill: 3,
     attraction: "LatencyGauge",
     sign: "Latency drops as you approach.",
   },
   {
     id: "cerebry",
+    land: "thrill",
+    kind: "fulltime",
     stop: 4,
     year: "2024",
     years: "Oct 2023 – Jan 2025",
@@ -181,11 +300,15 @@ export const stations: readonly Station[] = [
       { n: "2M", t: "users on the reporting dashboard" },
       { n: "+30%", t: "engagement, +18% session retention" },
     ],
+    ride: "Launch coaster · 0 to 2M riders",
+    thrill: 4,
     attraction: "CaptionStrip",
     sign: "Tap the captions to change language.",
   },
   {
     id: "cars24",
+    land: "thrill",
+    kind: "fulltime",
     stop: 5,
     year: "2025",
     years: "Jan 2025 – Mar 2026",
@@ -202,12 +325,16 @@ export const stations: readonly Station[] = [
       { n: "20+", t: "design-system components, 1,000+ daily users" },
       { n: "50K", t: "monthly customers on Hub Appointments" },
     ],
+    ride: "Hypercoaster · the big drop",
+    thrill: 5,
     attraction: "BundleScene",
     caseStudy: "cars24-design-system",
     sign: "Scroll slowly. The bundle shrinks.",
   },
   {
     id: "leena",
+    land: "thrill",
+    kind: "fulltime",
     stop: 6,
     year: "2026",
     years: "Mar 2026 – now",
@@ -224,6 +351,8 @@ export const stations: readonly Station[] = [
       { n: "95+", t: "accessibility score for 1M+ employees" },
       { n: "−80%", t: "UI defect volume" },
     ],
+    ride: "Giga coaster · now boarding",
+    thrill: 5,
     attraction: "PlatformPanel",
     caseStudy: "onboarding-engine",
     sign: "Terminus ahead. Mind the gap.",
@@ -231,6 +360,53 @@ export const stations: readonly Station[] = [
 ];
 
 export const stationIds: readonly StationId[] = stations.map((s) => s.id);
+
+export const kindLabel: Record<StationKind, string> = { campus: "Campus", intern: "Intern", fulltime: "Full-time" };
+export const passLabel: Record<StationKind, string> = { campus: "Guest pass", intern: "Intern pass", fulltime: "All-access" };
+
+// The Midway: what I ride with. Only tools that appear in shipped work.
+export const skills: readonly Skill[] = [
+  { id: "ts", name: "TypeScript", group: "Frontend", icon: "typescript" },
+  { id: "js", name: "JavaScript", group: "Frontend", icon: "javascript" },
+  { id: "react", name: "React", group: "Frontend", icon: "react" },
+  { id: "html", name: "HTML5", group: "Frontend", icon: "html5" },
+  { id: "css", name: "CSS", group: "Frontend", icon: "css" },
+  { id: "sass", name: "Sass", group: "Frontend", icon: "sass" },
+  { id: "aria", name: "React Aria", group: "Frontend" },
+  { id: "zoom", name: "Zoom SDK", group: "Frontend", icon: "zoom" },
+  { id: "node", name: "Node.js", group: "Backend", icon: "nodedotjs" },
+  { id: "rails", name: "Ruby on Rails", group: "Backend", icon: "rubyonrails" },
+  { id: "python", name: "Python", group: "Backend", icon: "python" },
+  { id: "mongo", name: "MongoDB", group: "Data", icon: "mongodb" },
+  { id: "sql", name: "PostgreSQL · SQL", group: "Data", icon: "postgresql" },
+  { id: "redis", name: "Redis", group: "Data", icon: "redis" },
+  { id: "aws", name: "AWS", group: "Cloud", icon: "amazonwebservices" },
+  { id: "firebase", name: "Firebase", group: "Cloud", icon: "firebase" },
+  { id: "azure", name: "Azure", group: "Cloud" },
+  { id: "git", name: "Git", group: "Tools", icon: "git" },
+  { id: "vite", name: "Vite", group: "Tools", icon: "vite" },
+];
+
+export const specialities: readonly string[] = [
+  "Design systems",
+  "Web performance",
+  "Accessibility to AA",
+  "Security hardening",
+  "Reporting dashboards",
+  "Virtualised UIs",
+  "Live captions & i18n",
+  "Scroll and motion craft",
+];
+
+// Side attractions: personal, open-source projects.
+export const projects: readonly Project[] = [
+  { id: "playodyssey", name: "Play Odyssey", tag: "Media", blurb: "A web playlist manager with an in-house video player.", repo: "https://github.com/udit1707/PlayOdyssey", image: playodyssey },
+  { id: "wheels", name: "Wheels for Wellness", tag: "Civic tech", blurb: "Emergency ambulance allocation and health-crisis management. The idea behind the patent.", repo: "https://github.com/udit1707/wheels-for-wellnesss", image: wheels },
+  { id: "tabletime", name: "Table Time", tag: "Full stack", blurb: "A comprehensive food-delivery app, end to end.", repo: "https://github.com/udit1707/TableTime", image: tabletime },
+  { id: "drone", name: "Drone Simulator", tag: "Maps", blurb: "Paints drone motion on a map from user-provided flight data.", repo: "https://github.com/udit1707/drone-simulator", image: drone },
+  { id: "kassandra", name: "Kassandra", tag: "Analytics", blurb: "Smart retail analytics and employee empowerment on Azure cloud services.", repo: "https://github.com/udit1707/welcomeToKassandra", image: kassandra },
+  { id: "bourbaki", name: "Bourbaki", tag: "Android · ML", blurb: "Solves maths problems from handwritten and printed text images.", repo: "https://github.com/udit1707/BourBaki", image: bourbaki },
+];
 
 // Case studies: written only from the public profile, deliberately high level.
 export const caseStudies: Record<CaseStudyId, CaseStudy> = {
@@ -292,9 +468,11 @@ export const caseStudies: Record<CaseStudyId, CaseStudy> = {
 
 export const achievements: readonly Achievement[] = [
   { id: "boarded", title: "Boarded", desc: "Scrolled past the gate." },
+  { id: "fastpass", title: "Fast pass", desc: "Cleared the height check. Full-time rides unlocked." },
   { id: "all-stops", title: "All stops", desc: "Rode the whole line. Ticket fully stamped." },
   { id: "night-rider", title: "Night rider", desc: "Switched the lights off." },
-  { id: "hood", title: "Opened the hood", desc: "Looked at the vitals." },
+  { id: "map", title: "Cartographer", desc: "Opened the park map." },
+  { id: "midway", title: "Midway regular", desc: "Spun the carousel." },
   { id: "terminal", title: "Found the terminal", desc: "Pressed the key nobody presses." },
   { id: "calm", title: "Calm rider", desc: "Turned the motion down." },
   { id: "gift-shop", title: "Gift shop", desc: "Exited through the gift shop." },
@@ -312,15 +490,6 @@ export function isAchievementId(v: unknown): v is AchievementId {
 export function isCaseStudyId(v: unknown): v is CaseStudyId {
   return typeof v === "string" && v in caseStudies;
 }
-
-// The performance story told in the hood. Numbers are from the October 2026 rebuild report.
-export const hoodStory = {
-  before: { score: 53, lcp: "8.0 s", fcp: "5.5 s", tbt: "380 ms", bytes: "1,157 KB", requests: 33, origins: 7 },
-  after: { score: 100, lcp: "1.5 s", fcp: "1.1 s", tbt: "60 ms", bytes: "411 KB", requests: 20, origins: 1 },
-  claims: [
-    "Rebuilt from create-react-app and React 16 to Vite with build-time pre-rendering, so the HTML paints before any JavaScript runs. Now on React 19.3 with the React Compiler, Vite 8 and strict TypeScript.",
-    "Fonts self-hosted and subset; icon-font CDNs replaced; animations loaded only when visible.",
-    "Proven pixel-identical to the old site with headless-Chrome screenshot diffs at six viewports in both colour schemes: zero differing pixels outside animations.",
-  ],
-  report: "frontend-bible.pdf",
-} as const;
+export function landOf(id: LandId): Land {
+  return lands.find((l) => l.id === id) ?? lands[0]!;
+}

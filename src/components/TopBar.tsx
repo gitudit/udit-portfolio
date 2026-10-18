@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import { person } from "../content/ride";
-import { useStore, toggleSound, toggleCalm, openPalette } from "../lib/store";
+import { useStore, toggleSound, toggleCalm, openPalette, openMap } from "../lib/store";
 import { toggleTheme } from "../lib/theme";
 import { play, primeAudio } from "../lib/sound";
-import { Sun, Moon, SoundOn, SoundOff, Calm, Command, Ticket } from "./Icons";
+import { Sun, Moon, SoundOn, SoundOff, Calm, Command, Ticket, MapIcon } from "./Icons";
 
 export default function TopBar() {
   const { sound, calm } = useStore((s) => ({ sound: s.sound, calm: s.calm }));
@@ -20,11 +20,25 @@ export default function TopBar() {
             Udit Singh <b>/ The Ride</b>
           </span>
         </a>
-        <nav className="topbar__nav" aria-label="Ride">
-          <a href="#line">Board</a>
+        <nav className="topbar__nav" aria-label="Park">
+          <a href="#line">Ride</a>
+          <a href="#midway">Midway</a>
           <a href="#exit">Exit</a>
         </nav>
         <div className="topbar__controls">
+          <button
+            type="button"
+            className="iconbtn"
+            onClick={() => {
+              openMap(true);
+              play("pop");
+            }}
+            aria-label="Park map"
+            aria-keyshortcuts="M"
+            title="Park map (M)"
+          >
+            <MapIcon />
+          </button>
           <button ref={themeBtn} type="button" className="iconbtn" onClick={() => toggleTheme(themeBtn.current)} aria-label="Switch between day and night" title="Day / Night">
             <span className="only-day">
               <Moon />

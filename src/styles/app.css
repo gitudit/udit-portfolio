@@ -264,9 +264,6 @@
   }
 
   /* ---------- HUD ticket ---------- */
-  main {
-    timeline-scope: --ride;
-  }
   .hud {
     position: sticky;
     top: 58px;
@@ -453,7 +450,7 @@
     color: var(--accent-ink);
     font: 600 0.56rem var(--mono);
   }
-  .stations {
+  .land__stations {
     display: grid;
     gap: clamp(140px, 26vh, 260px);
     padding-left: 44px;
@@ -652,19 +649,19 @@
     .track__car {
       left: 50%;
     }
-    .stations {
+    .land__stations {
       padding-left: 0;
     }
     .station {
       width: calc(50% - 48px);
     }
-    .station:nth-child(odd) {
+    .station--right {
       margin-left: auto;
     }
-    .station:nth-child(odd) .station__dot {
+    .station--right .station__dot {
       left: -55px;
     }
-    .station:nth-child(even) .station__dot {
+    .station--left .station__dot {
       left: auto;
       right: -55px;
     }
@@ -1443,7 +1440,6 @@
       opacity: 0;
     }
   }
-  .hood,
   .drawer {
     width: min(640px, 100%);
     max-height: calc(100svh - 2 * var(--gutter));
@@ -1462,7 +1458,6 @@
       opacity: 0;
     }
   }
-  .hood__head,
   .drawer__head {
     display: flex;
     justify-content: space-between;
@@ -1470,110 +1465,9 @@
     gap: 12px;
     margin-bottom: 18px;
   }
-  .hood__title,
   .drawer__title {
     font-size: clamp(1.6rem, 4vw, 2.2rem);
     margin-top: 6px;
-  }
-  .vitals {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
-    gap: 8px;
-    margin: 0;
-  }
-  .vital {
-    background: var(--bg);
-    border: 1px solid var(--rule);
-    border-radius: 10px;
-    padding: 10px;
-  }
-  .vital dt {
-    font-family: var(--mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.12em;
-    color: var(--ink-2);
-  }
-  .vital dd {
-    margin: 4px 0 0;
-    font-family: var(--mono);
-    font-size: 1rem;
-    font-variant-numeric: tabular-nums;
-  }
-  .vital.ok dd {
-    color: var(--ok);
-  }
-  .vital.warn dd {
-    color: var(--warn);
-  }
-  .vital.bad dd {
-    color: var(--accent-text);
-  }
-  .hood__note {
-    font-size: 0.82rem;
-    margin-top: 10px;
-  }
-  .hood__stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    margin-top: 16px;
-  }
-  .hood__stat {
-    border: 1px dashed var(--rule);
-    border-radius: 10px;
-    padding: 10px 12px;
-  }
-  .hood__stat b {
-    display: block;
-    font-size: 1.6rem;
-    line-height: 1;
-  }
-  .hood__stat span {
-    display: block;
-    font-size: 0.76rem;
-    color: var(--ink-2);
-    margin-top: 4px;
-  }
-  .hood__h3 {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent-text);
-    margin: 22px 0 10px;
-  }
-  .hood__table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.86rem;
-  }
-  .hood__table th,
-  .hood__table td {
-    text-align: left;
-    padding: 7px 8px;
-    border-bottom: 1px solid var(--rule);
-    vertical-align: top;
-  }
-  .hood__table th {
-    font-family: var(--mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-2);
-    font-weight: 500;
-  }
-  .hood__table td:last-child {
-    color: var(--ok);
-    font-weight: 600;
-  }
-  .hood__claims {
-    display: grid;
-    gap: 6px;
-    margin: 14px 0 18px;
-    padding-left: 1.1em;
-    list-style: disc;
-    font-size: 0.9rem;
-    color: var(--ink-2);
   }
   .drawer__sec {
     margin-bottom: 16px;

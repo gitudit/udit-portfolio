@@ -13,8 +13,13 @@ const brand: Partial<Record<SocialId, string>> = {
   hackerrank: hackerrankRaw,
 };
 
-function normalise(svg: string): string {
-  return svg.replace(/fill="#[0-9a-fA-F]{3,8}"/g, 'fill="currentColor"').replace("<svg ", '<svg aria-hidden="true" focusable="false" width="20" height="20" ');
+function normalise(svg: string, size: number): string {
+  return svg.replace(/fill="#[0-9a-fA-F]{3,8}"/g, 'fill="currentColor"').replace("<svg ", `<svg aria-hidden="true" focusable="false" width="${size}" height="${size}" fill="currentColor" `);
+}
+
+/** A build-time SVG string (simple-icons), rendered inline in currentColor. Never user content. */
+export function RawIcon({ svg, size = 20 }: { svg: string; size?: number }) {
+  return <span className="icon" style={{ width: size, height: size }} dangerouslySetInnerHTML={{ __html: normalise(svg, size) }} />;
 }
 
 export function BrandIcon({ id, size = 20 }: { id: SocialId; size?: number }) {
@@ -27,8 +32,7 @@ export function BrandIcon({ id, size = 20 }: { id: SocialId; size?: number }) {
   }
   const raw = brand[id];
   if (!raw) return null;
-  // Trusted build-time SVG from simple-icons, normalised above; never user content.
-  return <span className="icon" style={{ width: size, height: size }} dangerouslySetInnerHTML={{ __html: normalise(raw) }} />;
+  return <RawIcon svg={raw} size={size} />;
 }
 
 export const Sun = (p: IconProps) => (
@@ -91,9 +95,14 @@ export const Close = (p: IconProps) => (
     <path d="M6 6l12 12M18 6 6 18" />
   </svg>
 );
-export const Gauge = (p: IconProps) => (
-  <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" {...p}>
-    <path d="M4 15a8 8 0 1 1 16 0" />
-    <path d="M12 15l4-5" />
+export const MapIcon = (p: IconProps) => (
+  <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" />
+    <path d="M9 4v14M15 6v14" />
+  </svg>
+);
+export const Bolt = (p: IconProps) => (
+  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" {...p}>
+    <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
   </svg>
 );

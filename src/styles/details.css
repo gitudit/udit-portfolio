@@ -209,10 +209,10 @@
       user-select: none;
       transition: opacity var(--dur-slow) var(--ease-ui), color var(--dur-slow) var(--ease-ui);
     }
-    .station:nth-child(odd)::before {
+    .station--right::before {
       right: calc(100% + 110px);
     }
-    .station:nth-child(even)::before {
+    .station--left::before {
       left: calc(100% + 110px);
     }
     .station.is-current::before {
@@ -251,7 +251,7 @@
     opacity: calc(1 - var(--p, 0));
   }
   .topbar {
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
   }
   .att-deck__stage {
     position: relative;
@@ -261,13 +261,6 @@
     display: grid;
     gap: 6px;
     padding: 22px;
-  }
-  .hood__stats--loading {
-    min-height: 148px;
-    border-radius: 10px;
-    background: linear-gradient(90deg, var(--bg) 25%, var(--bg-2) 50%, var(--bg) 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.4s linear infinite;
   }
 
   /* ---------- View Transitions ----------
