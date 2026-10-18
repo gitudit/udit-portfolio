@@ -1,33 +1,43 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="day">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Portfolio | Udit Singh</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Udit Singh — The Ride</title>
     <meta
       name="description"
-      content="Portfolio of Udit Singh, a frontend software engineer who designs and builds web and mobile applications with JavaScript, React and Node.js."
+      content="Udit Singh is a frontend engineer who makes interfaces feel fast. Ride through seven stops of shipping: Leena AI, Cars24, Cerebry, Scaler, Altair, BYJU'S and IIIT Gwalior."
     />
     <link rel="canonical" href="https://gitudit.github.io/udit-portfolio/" />
     <link rel="icon" type="image/png" sizes="32x32" href="/profile_pic.png" />
     <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#6c63ff" />
-    <meta name="msapplication-TileColor" content="#603cba" />
-    <meta property="og:title" content="Udit Singh Website" />
+    <meta name="theme-color" content="#ECEEE8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B0E13" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content="Udit Singh — The Ride" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://gitudit.github.io/udit-portfolio/" />
-    <meta property="og:description" content="Portfolio of Udit Singh, frontend software engineer." />
+    <meta property="og:description" content="Frontend engineer who makes interfaces feel fast. Seven stops, one line. Now boarding." />
     <meta property="og:image" content="https://gitudit.github.io/udit-portfolio/og-image.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Fonts are self-hosted and preloaded; Vite rewrites these to the hashed asset URLs. -->
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="/src/assets/fonts/Montserrat-Regular.woff2" />
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="/src/assets/fonts/Agustina.woff2" />
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="/src/assets/fonts/fa-brands-400.woff2" />
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="/src/assets/fonts/fa-solid-900.woff2" />
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="/src/assets/fonts/font-mfizz.woff2" />
+    <!-- Theme before paint: stored preference, else the system scheme. Components never read the theme. -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("ride:theme");
+          if (t !== "day" && t !== "night") t = matchMedia("(prefers-color-scheme: dark)").matches ? "night" : "day";
+          document.documentElement.dataset.theme = t;
+          document.documentElement.classList.add("js");
+          if (localStorage.getItem("ride:calm") === "1") document.documentElement.dataset.calm = "1";
+        } catch (e) {}
+      })();
+    </script>
 
-    <!-- Google Analytics 4. Queued immediately, script injected after window load so it never competes with first paint. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/src/assets/fonts/Fraunces.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/src/assets/fonts/InstrumentSans.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/src/assets/fonts/JetBrainsMono.woff2" />
+
+    <!-- Google Analytics 4, injected after load on the first interaction (or after 10 s), so it never competes with paint, hydration or the first scroll. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -36,16 +46,24 @@
       gtag("js", new Date());
       gtag("config", "G-001DL7NH6R");
       window.addEventListener("load", function () {
-        var s = document.createElement("script");
-        s.async = true;
-        s.src = "https://www.googletagmanager.com/gtag/js?id=G-001DL7NH6R";
-        document.head.appendChild(s);
+        var go = function () {
+          var s = document.createElement("script");
+          s.async = true;
+          s.src = "https://www.googletagmanager.com/gtag/js?id=G-001DL7NH6R";
+          document.head.appendChild(s);
+        };
+        var once = function () {
+          if (go) { var g = go; go = null; g(); }
+          ["pointerdown", "keydown", "scroll", "touchstart"].forEach(function (t) { removeEventListener(t, once); });
+        };
+        ["pointerdown", "keydown", "scroll", "touchstart"].forEach(function (t) { addEventListener(t, once, { passive: true }); });
+        setTimeout(once, 10000);
       });
     </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>You need to enable JavaScript to ride. The content below is still readable.</noscript>
     <div id="root"></div>
-    <script type="module" src="/src/entry-client.jsx"></script>
+    <script type="module" src="/src/entry-client.tsx"></script>
   </body>
 </html>

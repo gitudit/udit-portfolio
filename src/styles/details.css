@@ -1,0 +1,358 @@
+/* Theme-park details and layout refinements layered on top of app.css. */
+
+@layer base {
+  html {
+    /* Anchor targets land below the sticky top bar; the gutter stays put when overlays lock scroll. */
+    scroll-padding-top: 72px;
+    scrollbar-gutter: stable;
+  }
+  html:has(.overlay) {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  /* ---------- Hero backdrop: a CSS impression of the shader for before it starts, and for devices that never run it ---------- */
+  .hero {
+    background:
+      radial-gradient(70% 60% at 72% 28%, color-mix(in srgb, var(--accent) 22%, var(--bg)) 0%, transparent 70%),
+      radial-gradient(50% 45% at 18% 78%, color-mix(in srgb, var(--accent) 12%, var(--bg)) 0%, transparent 70%),
+      radial-gradient(40% 40% at 55% 95%, color-mix(in srgb, var(--accent-2) 10%, var(--bg)) 0%, transparent 70%),
+      var(--bg);
+  }
+  .hero__shader {
+    animation: shader-in 900ms var(--ease-ui) both;
+  }
+  @keyframes shader-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 0.95;
+    }
+  }
+
+  /* ---------- Hero: the floating boarding pass (pointer-tilted, desktop only) ---------- */
+  .pass {
+    display: none;
+  }
+  @media (min-width: 1000px) {
+    .hero__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 40px;
+    }
+    .hero__copy {
+      min-width: 0;
+    }
+    .hero__title {
+      font-size: clamp(3.4rem, 12.5vw, 11rem);
+    }
+    .pass {
+      --rx: 0deg;
+      --ry: 0deg;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 96px;
+      width: 420px;
+      max-width: 34vw;
+      background: var(--ticket);
+      color: var(--ticket-ink);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      transform: perspective(1200px) rotateX(var(--rx)) rotateY(var(--ry)) rotate(-4deg);
+      transition: transform 180ms ease-out;
+      animation: pass-float 7s var(--ease-ui) infinite;
+      overflow: hidden;
+      will-change: transform;
+    }
+    .pass::after {
+      /* soft sheen that follows the tilt */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 40%, color-mix(in srgb, #fff 55%, transparent) 50%, transparent 60%);
+      transform: translateX(calc(var(--ry) * 2.5));
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    .pass__main {
+      padding: 18px 20px 20px;
+      display: grid;
+      gap: 12px;
+    }
+    .pass__top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+    }
+    .pass__brand {
+      color: var(--accent-text);
+    }
+    .pass__name {
+      font-size: 2.1rem;
+      line-height: 1;
+      font-variation-settings: "opsz" 144, "SOFT" 70;
+    }
+    .pass__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 0;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .pass__grid dt {
+      color: var(--ink-3);
+    }
+    .pass__grid dd {
+      margin: 3px 0 0;
+      color: var(--ink);
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+    }
+    .pass__route {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+    }
+    .pass__route i {
+      flex: 1;
+      height: 1px;
+      background: repeating-linear-gradient(90deg, var(--rail) 0 4px, transparent 4px 7px);
+      position: relative;
+    }
+    .pass__route i::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: -2px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .pass__barcode {
+      height: 30px;
+      border-radius: 3px;
+      background: repeating-linear-gradient(90deg, var(--ticket-ink) 0 2px, transparent 2px 4px, var(--ticket-ink) 4px 5px, transparent 5px 9px, var(--ticket-ink) 9px 12px, transparent 12px 14px);
+      opacity: 0.85;
+    }
+    .pass__stub {
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 6px;
+      padding: 14px 8px;
+      border-left: 2px dashed var(--rule);
+      text-align: center;
+      font-size: 0.56rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      background:
+        radial-gradient(circle at left 0 top 0, transparent 7px, var(--ticket) 7.5px) top left / 16px 50% no-repeat,
+        radial-gradient(circle at left 0 bottom 0, transparent 7px, var(--ticket) 7.5px) bottom left / 16px 50% no-repeat;
+    }
+    .pass__stub b {
+      font-size: 2.4rem;
+      line-height: 1;
+      color: var(--accent);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+  }
+  @keyframes pass-float {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 0 -10px;
+    }
+  }
+
+  /* ---------- HUD: the ticket is collected at the terminus ---------- */
+  .hud {
+    transition: transform var(--dur-slow) var(--ease-ui), opacity var(--dur-slow) var(--ease-ui);
+  }
+  .hud--away {
+    transform: translateY(-130%);
+    opacity: 0;
+  }
+  .hud--away .hud__ticket {
+    pointer-events: none;
+  }
+
+  /* ---------- Stations: ghost year on the empty half of the track (desktop) ---------- */
+  @media (min-width: 900px) {
+    .station::before {
+      content: attr(data-year);
+      position: absolute;
+      top: -0.1em;
+      font-family: var(--display);
+      font-size: clamp(5rem, 9vw, 8.5rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 500;
+      color: var(--ink);
+      opacity: 0.06;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      transition: opacity var(--dur-slow) var(--ease-ui), color var(--dur-slow) var(--ease-ui);
+    }
+    .station:nth-child(odd)::before {
+      right: calc(100% + 110px);
+    }
+    .station:nth-child(even)::before {
+      left: calc(100% + 110px);
+    }
+    .station.is-current::before {
+      opacity: 0.14;
+      color: var(--accent);
+    }
+  }
+
+  /* ---------- Attraction fixes ---------- */
+  .att-bundle {
+    min-height: 130vh;
+  }
+  .att-bundle__pin {
+    top: calc(58px + 104px);
+  }
+  /* Two tidy rows of chunks; the finance chunks shrink and fade as the scene scrolls. */
+  .treemap {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 56px;
+    gap: 4px;
+    height: auto;
+  }
+  .treemap__block {
+    grid-column: span var(--span, 3);
+    min-width: 0;
+    height: auto;
+    font-size: 0.56rem;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+    transition: none;
+  }
+  .treemap__block.is-drop {
+    flex-grow: initial;
+    transform: scale(calc(1 - 0.45 * var(--p, 0)));
+    opacity: calc(1 - var(--p, 0));
+  }
+  .topbar {
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+  }
+  .att-deck__stage {
+    position: relative;
+    min-height: 172px;
+  }
+  .att-deck__slide {
+    display: grid;
+    gap: 6px;
+    padding: 22px;
+  }
+  .hood__stats--loading {
+    min-height: 148px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--bg) 25%, var(--bg-2) 50%, var(--bg) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+  }
+
+  /* ---------- View Transitions ----------
+     React's <ViewTransition> (slide deck) and the theme wipe share the browser API. The root wipe only
+     runs while html.theme-wipe is set, so component transitions never flash the whole page. */
+  :root:not(.theme-wipe)::view-transition-old(root),
+  :root:not(.theme-wipe)::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+  ::view-transition-new(.deck-from-right) {
+    animation: deck-in-right 320ms var(--ease-scene) both;
+  }
+  ::view-transition-new(.deck-from-left) {
+    animation: deck-in-left 320ms var(--ease-scene) both;
+  }
+  ::view-transition-old(.deck-to-left) {
+    animation: deck-out-left 320ms var(--ease-scene) both;
+  }
+  ::view-transition-old(.deck-to-right) {
+    animation: deck-out-right 320ms var(--ease-scene) both;
+  }
+  @keyframes deck-in-right {
+    from {
+      transform: translateX(56px);
+      opacity: 0;
+    }
+  }
+  @keyframes deck-in-left {
+    from {
+      transform: translateX(-56px);
+      opacity: 0;
+    }
+  }
+  @keyframes deck-out-left {
+    to {
+      transform: translateX(-56px);
+      opacity: 0;
+    }
+  }
+  @keyframes deck-out-right {
+    to {
+      transform: translateX(56px);
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation: none !important;
+    }
+  }
+  :root[data-calm="1"]::view-transition-group(*),
+  :root[data-calm="1"]::view-transition-old(*),
+  :root[data-calm="1"]::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+@layer utilities {
+  /* Compact top bar on phones: icon-only palette and résumé buttons, brand without the suffix. */
+  @media (max-width: 719px) {
+    .topbar__row {
+      gap: 10px;
+    }
+    .topbar__controls {
+      gap: 2px;
+    }
+    .iconbtn {
+      width: 36px;
+      height: 36px;
+    }
+    .topbar__cmd,
+    .topbar__resume {
+      width: 36px;
+      height: 36px;
+      min-height: 0;
+      padding: 0;
+      justify-content: center;
+      border-radius: 999px;
+    }
+    .topbar__cmdlabel,
+    .topbar__name b {
+      display: none;
+    }
+  }
+}

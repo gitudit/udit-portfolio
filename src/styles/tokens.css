@@ -1,0 +1,311 @@
+/* Design tokens, fonts and base styles. Theme is a root attribute set before paint (see index.html). */
+@layer reset, tokens, base, layout, components, utilities;
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/Fraunces.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/InstrumentSans.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../assets/fonts/JetBrainsMono.woff2") format("woff2");
+}
+
+@layer tokens {
+  :root {
+    /* Day: bone, ink, signal */
+    --bg: #eceee8;
+    --bg-2: #e2e5de;
+    --surface: #f7f8f4;
+    --surface-2: #ffffff;
+    --ink: #0e1116;
+    --ink-2: #4b5160;
+    --ink-3: #646b7a;
+    --rule: #c9cec4;
+    --accent: #ff4d1c;
+    --accent-2: #c93a12;
+    --accent-text: #b9330c; /* accent for small text: 4.9:1 on --bg */
+    --accent-ink: #0e1116;
+    --rail: #b9beb4;
+    --glow: rgba(255, 77, 28, 0.35);
+    --ok: #1a9c5b;
+    --warn: #c98a00;
+    --shadow: 0 18px 40px -24px rgba(14, 17, 22, 0.45);
+    --ticket: #fff8ec;
+    --ticket-ink: #2a1d12;
+
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
+    --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --dur-fast: 150ms;
+    --dur-base: 300ms;
+    --dur-slow: 600ms;
+    --ease-ui: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --ease-scene: cubic-bezier(0.65, 0, 0.35, 1);
+
+    --gutter: max(16px, env(safe-area-inset-left, 0px));
+    --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+    --col: 1100px;
+    --radius: 12px;
+    color-scheme: light;
+  }
+  :root[data-theme="night"] {
+    --bg: #0b0e13;
+    --bg-2: #11151c;
+    --surface: #151a22;
+    --surface-2: #1b212b;
+    --ink: #ecede8;
+    --ink-2: #a7adb8;
+    --ink-3: #8891a1;
+    --rule: #2a313d;
+    --accent: #ff6a3d;
+    --accent-2: #ff8a66;
+    --accent-text: #ff7a52;
+    --accent-ink: #0b0e13;
+    --rail: #2f3642;
+    --glow: rgba(255, 106, 61, 0.45);
+    --shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.8);
+    --ticket: #1f1a16;
+    --ticket-ink: #f3e9d8;
+    color-scheme: dark;
+  }
+}
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  img,
+  svg,
+  canvas {
+    display: block;
+    max-width: 100%;
+  }
+  button,
+  input,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+  button {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    margin: 0;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+    transition: background-color var(--dur-base) var(--ease-ui), color var(--dur-base) var(--ease-ui);
+  }
+  a {
+    color: inherit;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .display {
+    font-family: var(--display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    text-wrap: balance;
+    font-variation-settings: "opsz" 144, "SOFT" var(--soft, 50);
+  }
+  .mono {
+    font-family: var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.74rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+  .muted {
+    color: var(--ink-2);
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .skip {
+    position: absolute;
+    left: var(--gutter);
+    top: -100px;
+    z-index: 100;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+  }
+  .skip:focus {
+    top: 12px;
+  }
+}
+
+@layer layout {
+  .wrap {
+    width: min(var(--col), 100% - var(--gutter) - var(--gutter-r));
+    margin-inline: auto;
+  }
+  .section {
+    padding-block: clamp(56px, 9vw, 120px);
+  }
+}
+
+@layer utilities {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform var(--dur-fast) var(--ease-ui), background-color var(--dur-fast) var(--ease-ui), border-color var(--dur-fast) var(--ease-ui), color var(--dur-fast) var(--ease-ui);
+    will-change: transform;
+  }
+  .btn:hover {
+    border-color: var(--ink);
+  }
+  .btn--primary {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+  }
+  .btn--primary:hover {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .btn--ghost {
+    background: transparent;
+  }
+  .btn[aria-pressed="true"] {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .kbd {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    border: 1px solid var(--rule);
+    border-bottom-width: 2px;
+    border-radius: 5px;
+    padding: 1px 6px;
+    color: var(--ink-2);
+    background: var(--surface-2);
+  }
+}
+
+/* Calm ride and reduced motion: everything settles to its final state. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root[data-calm="1"] {
+  scroll-behavior: auto;
+}
+:root[data-calm="1"] *,
+:root[data-calm="1"] *::before,
+:root[data-calm="1"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+/* View Transitions theme wipe */
+:root.theme-wipe::view-transition-old(root),
+:root.theme-wipe::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+:root.theme-wipe::view-transition-new(root) {
+  animation: ride-wipe 560ms var(--ease-ui);
+  clip-path: circle(0 at var(--wipe-x, 100%) var(--wipe-y, 0%));
+}
+@keyframes ride-wipe {
+  to {
+    clip-path: circle(150vmax at var(--wipe-x, 100%) var(--wipe-y, 0%));
+  }
+}
