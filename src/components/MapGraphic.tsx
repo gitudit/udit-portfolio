@@ -57,7 +57,7 @@ export function MapGraphic({ interactive = false }: { interactive?: boolean }) {
           <circle r={interactive ? 9 : 7} className="map__pinring" />
           <circle r={interactive ? 4 : 3} className="map__pindot" />
           {interactive && (
-            <text className="map__pinlabel" y={pin.land === "thrill" || pin.land === "midway" || pin.land === "exit" ? -16 : 26} textAnchor="middle">
+            <text className="map__pinlabel" y={pin.side === "above" ? -17 : 27} x={pin.anchor === "start" ? -10 : pin.anchor === "end" ? 10 : 0} textAnchor={pin.anchor}>
               {pin.label}
               <tspan className="map__pinsub"> · {pin.sub}</tspan>
             </text>

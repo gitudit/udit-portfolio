@@ -237,6 +237,7 @@
   .lands {
     display: grid;
     gap: clamp(60px, 10vh, 120px);
+    padding-bottom: clamp(70px, 12vh, 150px);
   }
   .land {
     position: relative;
